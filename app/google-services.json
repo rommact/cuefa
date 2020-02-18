@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "638489727404",
+    "firebase_url": "https://undr-cbc6e.firebaseio.com",
+    "project_id": "undr-cbc6e",
+    "storage_bucket": "undr-cbc6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638489727404:android:6fe86eb9bb3a0a6c386a09",
+        "android_client_info": {
+          "package_name": "com.rommac.cuefa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638489727404-j67eluv7mpa6j3960koe3024l9817d3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rommac.cuefa",
+            "certificate_hash": "fbe1bde1d8f71d5c12f4856bb73f5409d12eeb0f"
+          }
+        },
+        {
+          "client_id": "638489727404-ktkmpa1bom6om9eb48l184402d8rl8l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfHdmb_4QNPo0KYfjk0N05bxPn6C1Vo-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638489727404-ktkmpa1bom6om9eb48l184402d8rl8l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
