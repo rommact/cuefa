@@ -1,31 +1,26 @@
 package com.rommac.cuefa
 
 import android.app.Application
-import androidx.room.Room
-import com.rommac.cuefa.di.*
+import com.rommac.core_api.ProvidersFacade
+import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.cuefa.di.FacadeComponent
 
 
-class App: Application() {
+class App : Application(), AppWithFacade {
 
     companion object {
-        lateinit var appComponent: AppComponent
+
+        private var facadeComponent: FacadeComponent? = null
     }
 
+    override fun getFacade(): ProvidersFacade {
+        return facadeComponent ?: FacadeComponent.init(this).also {
+            facadeComponent = it
+        }
+    }
 
     override fun onCreate() {
         super.onCreate()
-        initDi()
+        (getFacade() as FacadeComponent).inject(this)
     }
-
-    private fun initDi(){
-        appComponent = DaggerAppComponent.builder()
-            .application(this)
-            .build()
-
-    }
-
-
-
-
-
 }

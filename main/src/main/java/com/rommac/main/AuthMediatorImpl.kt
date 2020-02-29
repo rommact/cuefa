@@ -6,8 +6,9 @@ import com.firebase.ui.auth.AuthUI
 import com.rommac.core_api.mediator.AuthMediator
 import com.rommac.core_api.mediator.AuthMediator.Companion.RC_SIGN_IN
 import java.util.*
+import javax.inject.Inject
 
-class AuthMediatorImpl: AuthMediator {
+class AuthMediatorImpl @Inject constructor(): AuthMediator {
     override fun openAuthScreen(context: Activity) {
         val providers = Arrays.asList(
             AuthUI.IdpConfig.EmailBuilder().build(),

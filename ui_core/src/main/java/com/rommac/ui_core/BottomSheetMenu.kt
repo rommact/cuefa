@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.rommac.cuefa.R
 import kotlinx.android.synthetic.main.bottom_sheet_menu.view.*
 import kotlinx.android.synthetic.main.item_bottom_sheet_menu1.view.*
 

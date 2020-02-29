@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/profile" android:icon="@drawable/ic_menu_manage" android:id="@+id/profile"/>
     <item android:title="@string/players" android:icon="@drawable/ic_supervisor_account_black_24dp"
           android:id="@+id/players"/>
     <item android:title="@string/sessions" android:icon="@drawable/ic_supervisor_account_black_24dp"

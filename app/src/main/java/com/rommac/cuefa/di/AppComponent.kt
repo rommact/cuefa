@@ -1,30 +1,35 @@
 package com.rommac.cuefa.di
 
-import com.rommac.cuefa.App
-import com.rommac.cuefa.core.auth.AuthDataProvider
-import com.rommac.cuefa.core.session.SessionInteractor
-import com.rommac.cuefa.db.AppDatabase
-import com.rommac.cuefa.network.Api
-import com.rommac.cuefa.repository.PlayersRepository
+import android.app.Application
+import android.content.Context
+import com.rommac.core_api.mediator.AppProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [AppModule::class, RepositoryModule::class])
-interface AppComponent{
-    fun getDB(): AppDatabase
-    fun geApi(): Api
-    fun getPlayersRepository(): PlayersRepository
-    fun getSessionInteractor(): SessionInteractor
+@Component(modules = [AppModule::class])
+interface AppComponent : AppProvider {
+    companion object {
 
-    fun getAuthDataProvider(): AuthDataProvider
+        private var appComponent: AppProvider? = null
+
+        fun create(application: Application): AppProvider {
+            return appComponent ?: DaggerAppComponent
+                .builder()
+                .application(application.applicationContext)
+                .build().also {
+                    appComponent = it
+                }
+        }
+    }
 
     @Component.Builder
-     interface Builder {
+    interface Builder {
         @BindsInstance
-        fun application(app: App): Builder
+        fun application(context: Context): Builder
+
         fun build(): AppComponent
     }
 }

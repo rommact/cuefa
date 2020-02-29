@@ -8,7 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [MainModule::class],
+    modules = [MainModule::class, MainModule.MainModuleProviders::class],
     dependencies = [ProvidersFacade::class]
 )
 interface MainComponent {
@@ -19,6 +19,7 @@ interface MainComponent {
                 .activity(activity)
                 .providersFacade(providersFacade)
                 .build()
+
         }
     }
 
@@ -27,6 +28,7 @@ interface MainComponent {
     interface Builder {
         @BindsInstance
         fun activity(activity: AppCompatActivity): Builder
+        fun providersFacade(providersFacade: ProvidersFacade): Builder
         fun build(): MainComponent
     }
 }

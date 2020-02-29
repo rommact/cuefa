@@ -4,11 +4,9 @@ package com.rommac.core_api.network
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.GameSessionItem
 import com.rommac.core_api.dto.Player
-import com.rommac.cuefa.network.dto.AuthBody
+import com.rommac.core_api.network.dto.AuthBody
 import com.rommac.cuefa.network.dto.AuthResponse
 import com.rommac.cuefa.network.dto.session.ActionBody
-import com.rommac.cuefa.network.dto.session.CreateSessionBody
-import com.rommac.cuefa.network.dto.session.CreateSessionResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 

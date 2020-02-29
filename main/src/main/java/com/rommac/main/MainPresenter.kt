@@ -2,7 +2,7 @@ package com.rommac.cuefa.ui.main
 
 import android.app.Activity
 import android.content.Intent
-import com.example.lib.mvp.BasePresenter
+import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.interactor.AuthDataProvider
 import com.rommac.core_api.interactor.AuthInteractor
 import com.rommac.main.MainContract

@@ -1,22 +1,17 @@
 package com.rommac.cuefa.ui.session
 
 import android.view.View
-import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.rommac.cuefa.R
-import com.rommac.cuefa.core.GameSession
-import com.rommac.cuefa.core.Player
-import com.rommac.cuefa.mvp.BaseFragmentView
-import com.rommac.cuefa.mvp.BaseView
-import com.rommac.cuefa.ui.base.BaseFragment
-import com.rommac.cuefa.ui.common.BottomMenuItem
-import com.rommac.cuefa.ui.common.BottomSheetMenu
-import com.rommac.cuefa.ui.main.MainContract
+import com.rommac.core_api.dto.GameSession
+import com.rommac.mvp.BaseFragment
+
+import com.rommac.mvp.BaseFragmentView
+import com.rommac.sessions.R
+import com.rommac.ui_core.BottomMenuItem
+import com.rommac.ui_core.BottomSheetMenu
+
 
 class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fragment), SessionsContract.View,
     SessionListAdapter.Listener {
@@ -28,7 +23,7 @@ class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fr
 
 
     fun onFinishInaflate(playersPresenter: SessionsContract.Presenter): SessionsContract.View {
-        listPlayers = fragment.view!!.findViewById(R.id.listPlayers)
+        listPlayers = fragment.view!!.findViewById(R.id.list_players)
         btnAddSession = fragment.view!!.findViewById(R.id.btn_add_session)
         presenter = playersPresenter
         presenter.attachView(this, fragment.lifecycle)

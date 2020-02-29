@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), CommonView {
     }
 
     private fun inject() {
-        MainComponent.create((application as AppWithFacade).getFacade()).inject(this)
+        MainComponent.create((application as AppWithFacade).getFacade(),this).inject(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

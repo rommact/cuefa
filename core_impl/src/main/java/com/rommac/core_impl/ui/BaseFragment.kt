@@ -1,9 +1,9 @@
 package com.rommac.core_impl.ui
 
-import android.app.Activity
 import android.content.Context
 import androidx.fragment.app.Fragment
-import com.rommac.core_api.mvp.CommonView
+import com.rommac.mvp.CommonView
+
 
 open class BaseFragment : Fragment() {
     lateinit var commonView: CommonView

@@ -42,11 +42,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                            android:id="@+id/imageView3"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/ic_seal" />
+<!--                    <ImageView-->
+<!--                            android:id="@+id/imageView3"-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:src="@drawable/ic_seal" />-->
 
                     <TextView
                             android:id="@+id/textView"

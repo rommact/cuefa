@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.rommac.core_api.interactor.AuthData
 import com.rommac.core_api.interactor.AuthInteractor
 import com.rommac.core_api.network.Api
-import com.rommac.cuefa.network.dto.AuthBody
+import com.rommac.core_api.network.dto.AuthBody
 import com.rommac.core_api.interactor.AuthDataProvider
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
 
@@ -35,9 +38,9 @@ dependencies {
     implementation project(':mvp')
     implementation project(':ui_core')
     implementation dagger
+    kapt daggerCompiler
     implementation rxjava2
     implementation constraintlayout
-    kapt daggerCompiler
     implementation room
     implementation recyclerview
     kapt roomCompiler

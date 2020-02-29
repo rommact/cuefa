@@ -1,7 +1,8 @@
-package com.rommac.cuefa.network.dto.session
+package com.rommac.core_api.network.dto.session
 
-import com.rommac.cuefa.core.GameSession
+import com.rommac.core_api.dto.GameSession
+import com.rommac.core_api.dto.GameSessionItem
 
 class CreateSessionResponse(
-    val session: GameSession
+    val session: GameSessionItem
 )

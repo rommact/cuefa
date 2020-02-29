@@ -1,13 +1,13 @@
 package com.rommac.main
 
 import android.content.Intent
-import com.example.lib.mvp.MvpPresenter
-import com.example.lib.mvp.MvpView
+import com.rommac.mvp.MvpPresenter
+import com.rommac.mvp.MvpView
 import com.rommac.mvp.CommonView
 
 interface MainContract {
     interface View: MvpView, CommonView {
-        fun onFinishInflate(presenter: Presenter)
+        fun onFinishInflate(presenter: Presenter): View
         fun signin(email:String)
         fun signout()
 

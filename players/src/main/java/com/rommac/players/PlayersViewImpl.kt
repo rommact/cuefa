@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.Player
-import com.rommac.cuefa.mvp.BaseView
+import com.rommac.mvp.BaseView
 
 class PlayersViewImpl(private val fragment: Fragment) : BaseView(fragment.context!!), PlayersContract.View,
     PlayerListAdapter.Listener {
@@ -18,8 +18,8 @@ class PlayersViewImpl(private val fragment: Fragment) : BaseView(fragment.contex
     lateinit var playerListAdapter: PlayerListAdapter
 
     fun onFinishInaflate(playersPresenter: PlayersContract.Presenter): PlayersContract.View {
-        listPlayers = fragment.view!!.findViewById(R.id.listPlayers)
-        editQuery = fragment.view!!.findViewById(R.id.editQuery)
+        listPlayers = fragment.view!!.findViewById(R.id.list_players)
+        editQuery = fragment.view!!.findViewById(R.id.edit_query)
         presenter = playersPresenter
         presenter.attachView(this, fragment.lifecycle)
         initViews()

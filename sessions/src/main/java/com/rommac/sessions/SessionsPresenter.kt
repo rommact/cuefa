@@ -2,7 +2,7 @@ package com.rommac.cuefa.ui.session
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.lib.mvp.BasePresenter
+import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.interactor.SessionInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers

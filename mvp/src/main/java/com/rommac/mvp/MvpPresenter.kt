@@ -1,4 +1,4 @@
-package com.example.lib.mvp
+package com.rommac.mvp
 
 import androidx.lifecycle.Lifecycle
 

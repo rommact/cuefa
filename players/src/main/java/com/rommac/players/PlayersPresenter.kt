@@ -2,7 +2,7 @@ package com.rommac.players
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.lib.mvp.BasePresenter
+import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.dto.Player
 import com.rommac.core_api.storage.PlayersStorage
 import io.reactivex.android.schedulers.AndroidSchedulers

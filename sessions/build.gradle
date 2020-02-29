@@ -37,12 +37,13 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0'
 
     implementation project(':core_api')
+    implementation project(':ui_core')
     implementation project(':mvp')
     implementation dagger
+    kapt daggerCompiler
     implementation constraintlayout
     implementation rxjava2
     implementation recyclerview
-    kapt daggerCompiler
     implementation room
     kapt roomCompiler
     testImplementation 'junit:junit:4.12'

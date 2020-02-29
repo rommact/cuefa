@@ -1,6 +1,6 @@
 package com.rommac.game
 
-import com.example.lib.mvp.BasePresenter
+import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.getOpponent
 import com.rommac.core_api.interactor.GameInteractor

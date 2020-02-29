@@ -1,12 +1,12 @@
 package com.rommac.cuefa.ui.game
 
-import com.example.lib.mvp.MvpPresenter
-import com.example.lib.mvp.MvpView
+import com.rommac.mvp.MvpPresenter
+import com.rommac.mvp.MvpView
 import com.rommac.core_api.dto.GameSession
 import com.rommac.cuefa.network.dto.session.ACTION_TYPE
 
 interface GameContract {
-    interface View:MvpView{
+    interface View: MvpView {
         fun setSelectedActionMy(actionType: ACTION_TYPE)
         fun setSelectedActionOpponent(actionType: ACTION_TYPE)
         fun setOpponentName(name: String)
@@ -17,7 +17,7 @@ interface GameContract {
         fun setEnabledUI(enabled: Boolean)
     }
 
-    interface Presenter: MvpPresenter<View>{
+    interface Presenter: MvpPresenter<View> {
         var gameSession: GameSession
         fun onActionClicked(actionType: ACTION_TYPE)
         fun onExitClicked()

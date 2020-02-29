@@ -7,11 +7,10 @@ import com.rommac.core_api.storage.StorageProvider
 import dagger.Component
 import javax.inject.Singleton
 
-
 @Singleton
 @Component(
     dependencies = [AppProvider::class],
-    modules = [InteractorModule::class, NetworkModule::class]
+    modules = [StorageModule::class, NetworkModule::class]
 )
-interface InteractorComponent: InteractorProvider {
+interface StorageComponent: StorageProvider {
 }

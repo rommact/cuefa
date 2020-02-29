@@ -1,6 +1,6 @@
-package com.rommac.cuefa.mvp
+package com.rommac.mvp
 
-import com.example.lib.mvp.MvpView
+import com.rommac.mvp.MvpView
 import com.rommac.mvp.CommonView
 
 interface FragmentView: MvpView {

@@ -1,11 +1,10 @@
-package com.example.lib.mvp
+package com.rommac.mvp
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import com.rommac.cuefa.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -32,16 +31,16 @@ abstract class BasePresenter<V : MvpView> : ViewModel(), MvpPresenter<V>, Lifecy
         viewLifecycle = null
     }
 
-    protected fun disposable(disposable: Disposable):Disposable{
+    protected fun disposable(disposable: Disposable): Disposable {
         compositeDisposable.add(disposable)
         return disposable
     }
 
-    protected fun showError(@StringRes textId: Int){
+    protected fun showError(@StringRes textId: Int) {
         view?.showError(textId)
     }
 
-    protected fun showError(){
+    protected fun showError() {
         showError(R.string.any_error)
     }
 

@@ -6,7 +6,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [PlayersModule::class],
+    modules = [PlayersModule::class ],
     dependencies = [ProvidersFacade::class]
 )
 interface PlayersComponent {

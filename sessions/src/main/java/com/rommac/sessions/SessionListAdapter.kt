@@ -8,8 +8,9 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.GameSession
-import com.rommac.cuefa.core.getOpponent
-import com.rommac.cuefa.core.getOwner
+import com.rommac.core_api.dto.getOpponent
+import com.rommac.core_api.dto.getOwner
+
 import com.rommac.sessions.R
 
 

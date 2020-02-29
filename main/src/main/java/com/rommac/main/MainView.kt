@@ -14,14 +14,13 @@ import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.rommac.core_api.mediator.AuthMediator
-import com.rommac.cuefa.mvp.BaseView
+import com.rommac.mvp.BaseView
 import com.rommac.main.MainContract
 import com.rommac.main.R
-import java.util.*
 import javax.inject.Inject
 
 class MainView @Inject constructor(private val activity: AppCompatActivity,
-               private val authMediator: AuthMediator) :BaseView(activity),  MainContract.View,
+               private val authMediator: AuthMediator) : BaseView(activity),  MainContract.View,
     NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView
@@ -36,13 +35,13 @@ class MainView @Inject constructor(private val activity: AppCompatActivity,
     lateinit var presenter: MainContract.Presenter
     lateinit var txtAuth: TextView
 
-    fun onFinishInflate(presenter: MainContract.Presenter):MainView {
+    override fun onFinishInflate(presenter: MainContract.Presenter):MainContract.View {
         this.presenter = presenter
         presenter.attachView(this,activity.lifecycle)
 
         navView = activity.findViewById(R.id.nav_view)
-        progressMain = activity.findViewById(R.id.progressMain)
-        bottomNavigation = activity.findViewById(R.id.bottomNavigation)
+        progressMain = activity.findViewById(R.id.progress_main)
+        bottomNavigation = activity.findViewById(R.id.bottom_navigation)
         toolbar = activity.findViewById(R.id.toolbar)
         drawerLayout = activity.findViewById(R.id.drawer_layout)
 

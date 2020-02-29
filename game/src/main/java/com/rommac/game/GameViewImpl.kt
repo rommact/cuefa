@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rommac.cuefa.mvp.BaseView
+import com.rommac.mvp.BaseView
 import com.rommac.cuefa.network.dto.session.ACTION_TYPE
 import com.rommac.cuefa.ui.game.ActionsAdapter
 import com.rommac.cuefa.ui.game.GameContract

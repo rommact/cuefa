@@ -1,20 +1,19 @@
-package com.rommac.cuefa.network.dto
+package com.rommac.core_api.network.dto
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class AuthBody(
-    @Expose
-    val email:String,
-    @Expose
-    val name:String,
-    @Expose
-    val token:String,
+
+    val email: String,
+
+    val name: String,
+
+    val token: String,
+
     @SerializedName("device_id")
-    @Expose
-    val deviceId:String,
-    @Expose
-    val uid:String,
-    @Expose
-    val adid:String
+    val deviceId: String,
+
+    val uid: String,
+
+    val adid: String
 )
