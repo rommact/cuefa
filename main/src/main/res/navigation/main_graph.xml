@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_graph"
+            app:startDestination="@id/playersFragment">
+
+    <fragment
+        android:id="@+id/playersFragment"
+        android:name="com.rommac.players.PlayersFragment"
+        android:label="PlayersFragment" />
+    <fragment
+        android:id="@+id/sessionFragment"
+        android:name="com.rommac.sessions.SessionFragment"
+        android:label="SessionFragment" />
+
+</navigation>

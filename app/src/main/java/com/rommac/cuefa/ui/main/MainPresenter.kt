@@ -5,19 +5,23 @@ import android.content.Intent
 import com.example.lib.mvp.BasePresenter
 import com.rommac.cuefa.core.auth.AuthInteractor
 import com.google.firebase.auth.FirebaseAuth
+import com.rommac.cuefa.core.auth.AuthData
+import com.rommac.cuefa.core.auth.AuthDataProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MainPresenter
-@Inject constructor(private val authInteractor: AuthInteractor)
+@Inject constructor(private val authInteractor: AuthInteractor, private val authDataProvider: AuthDataProvider)
     : BasePresenter<MainContract.View>(), MainContract.Presenter {
 
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    override fun onBottomMenuItemClicked(pos: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBottomMenuItemClicked(pos: MainContract.BOTTOM_NAV) {
+        when(pos){
+            MainContract.BOTTOM_NAV.SESSIONS -> view?.toSessions()
+            MainContract.BOTTOM_NAV.PLAYERS -> view?.toPlayers()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -37,7 +41,7 @@ class MainPresenter
                         FirebaseAuth.getInstance().signOut()
                         view?.signout()
                     })
-                compositeDisposable.add(subscribe)
+                disposable(subscribe)
             } else {
 
             }
@@ -45,9 +49,8 @@ class MainPresenter
     }
 
     override fun viewIsReady() {
-        val authData = authInteractor.authData
-        if(authData.status){
-            view?.signin(authData.email)
+        if(authDataProvider.authData.status){
+            view?.signin(authDataProvider.authData.email)
         }else{
             view?.signout()
         }
@@ -66,10 +69,6 @@ class MainPresenter
 
     }
 
-    override fun destroy() {
-        super.destroy()
-        compositeDisposable.dispose()
-    }
 
     companion object {
          val RC_SIGN_IN: Int = 1

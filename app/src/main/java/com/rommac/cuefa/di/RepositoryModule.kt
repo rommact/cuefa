@@ -4,6 +4,7 @@ import com.rommac.cuefa.repository.PlayersRepository
 import com.rommac.cuefa.repository.LocalPlayersStorage
 import com.rommac.cuefa.db.dto.PlayerDao
 import com.rommac.cuefa.di.scope.FragmentScope
+import com.rommac.cuefa.interactor.PlayerInteractor
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -12,5 +13,5 @@ import dagger.Provides
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun providePlayerRepository(localPlayersStorage: LocalPlayersStorage): PlayersRepository
+    abstract fun providePlayerRepository(playerInteractor: PlayerInteractor): PlayersRepository
 }

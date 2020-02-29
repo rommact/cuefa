@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.cuefa.R
 import com.rommac.cuefa.core.Player
+import com.rommac.cuefa.mvp.BaseView
 
-class PlayersViewImpl(private val fragment: Fragment) : PlayersContract.View,
+class PlayersViewImpl(private val fragment: Fragment) :BaseView(fragment.context!!), PlayersContract.View,
     PlayerListAdapter.Listener {
 
     private lateinit var editQuery: EditText

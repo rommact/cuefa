@@ -9,5 +9,6 @@ data class PlayerItem(
     var id: Long? = null,
     val uid: String,
     val email: String,
-    val isFriend: Boolean
+    val isFriend: Boolean,
+    val isMy: Boolean
 )

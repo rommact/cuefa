@@ -10,12 +10,13 @@ import javax.inject.Inject
 
 class AuthInteractorImpl
 @Inject constructor(private val api: Api):AuthInteractor{
+    companion object: AuthDataProvider{
+        private var currentAuthData: AuthData = AuthData(false, 0, "","")
 
-    private var currentAuthData: AuthData = AuthData(false, 0, "")
-
-    override var authData: AuthData
-        get() = currentAuthData
-        set(value) {}
+        override var authData: AuthData
+            get() = currentAuthData
+            set(value) {}
+    }
 
     override fun signIn():Observable<AuthData> {
         val user = FirebaseAuth.getInstance().currentUser
@@ -35,8 +36,10 @@ class AuthInteractorImpl
             adid
         )
         return api.auth(authData)
-            .map { AuthData(it.status, it.balance,email) }
-            .doOnNext { currentAuthData = it }
+            .map { AuthData(it.status, it.balance,email, uid) }
+            .doOnNext {
+                currentAuthData = it
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 

@@ -4,8 +4,6 @@ import io.reactivex.Observable
 
 interface AuthInteractor {
 
-    var authData:AuthData
-
     fun signIn():Observable<AuthData>
 
     fun signOut()

@@ -37,5 +37,9 @@ class ProfileFragment : Fragment(),
         presenter.viewIsReady()
     }
 
+    override fun showError(textId: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
 }

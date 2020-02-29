@@ -15,9 +15,10 @@ import com.rommac.cuefa.R
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.rommac.cuefa.mvp.BaseView
 import java.util.*
 
-class MainView(private val activity: AppCompatActivity ) : MainContract.View,
+class MainView(private val activity: AppCompatActivity ) :BaseView(activity),  MainContract.View,
     NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView
@@ -28,6 +29,7 @@ class MainView(private val activity: AppCompatActivity ) : MainContract.View,
     private lateinit var txtEmail: TextView
     private lateinit var layoutEmail: View
     private lateinit var progressBar: View
+    private lateinit var progressMain: View
     lateinit var presenter: MainContract.Presenter
     lateinit var txtAuth: TextView
 
@@ -36,6 +38,7 @@ class MainView(private val activity: AppCompatActivity ) : MainContract.View,
         presenter.attachView(this,activity.lifecycle)
 
         navView = activity.findViewById(R.id.nav_view)
+        progressMain = activity.findViewById(R.id.progressMain)
         bottomNavigation = activity.findViewById(R.id.bottomNavigation)
         toolbar = activity.findViewById(R.id.toolbar)
         drawerLayout = activity.findViewById(R.id.drawer_layout)
@@ -81,13 +84,15 @@ class MainView(private val activity: AppCompatActivity ) : MainContract.View,
         }
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.profile -> {
 
-                }
                 R.id.players -> {
-
+                    presenter.onBottomMenuItemClicked(MainContract.BOTTOM_NAV.PLAYERS)
+                }
+                R.id.sessions -> {
+                    presenter.onBottomMenuItemClicked(MainContract.BOTTOM_NAV.SESSIONS)
                 }
             }
+            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }
@@ -116,6 +121,10 @@ class MainView(private val activity: AppCompatActivity ) : MainContract.View,
         navController.navigate(R.id.playersFragment);
     }
 
+    override fun toSessions() {
+        navController.navigate(R.id.sessionFragment);
+    }
+
 
     override fun signout() {
         layoutEmail.visibility = View.GONE
@@ -136,11 +145,18 @@ class MainView(private val activity: AppCompatActivity ) : MainContract.View,
         progressBar.visibility = View.INVISIBLE
     }
 
+    override fun setVisibleProgressMain(isVisible: Boolean) {
+        progressBar.visibility = if(isVisible) View.VISIBLE else View.INVISIBLE
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
-            R.id.nav_friends -> {
-
+            R.id.players -> {
+                presenter.onBottomMenuItemClicked(MainContract.BOTTOM_NAV.PLAYERS)
+            }
+            R.id.sessions -> {
+                presenter.onBottomMenuItemClicked(MainContract.BOTTOM_NAV.SESSIONS)
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
