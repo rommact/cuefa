@@ -1,4 +1,4 @@
-package com.rommac.cuefa.ui.session
+package com.rommac.sessions
 
 import androidx.lifecycle.LiveData
 import com.rommac.mvp.MvpPresenter

@@ -1,11 +1,11 @@
-package com.rommac.cuefa.ui.main
+package com.rommac.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,12 +15,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.rommac.core_api.mediator.AuthMediator
 import com.rommac.mvp.BaseView
-import com.rommac.main.MainContract
-import com.rommac.main.R
 import javax.inject.Inject
 
-class MainView @Inject constructor(private val activity: AppCompatActivity,
-               private val authMediator: AuthMediator) : BaseView(activity),  MainContract.View,
+class MainView @Inject constructor(
+    private val activity: AppCompatActivity,
+    private val authMediator: AuthMediator
+) : BaseView(activity), MainContract.View,
     NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView
@@ -35,9 +35,9 @@ class MainView @Inject constructor(private val activity: AppCompatActivity,
     lateinit var presenter: MainContract.Presenter
     lateinit var txtAuth: TextView
 
-    override fun onFinishInflate(presenter: MainContract.Presenter):MainContract.View {
+    override fun onFinishInflate(presenter: MainContract.Presenter): MainContract.View {
         this.presenter = presenter
-        presenter.attachView(this,activity.lifecycle)
+        presenter.attachView(this, activity.lifecycle)
 
         navView = activity.findViewById(R.id.nav_view)
         progressMain = activity.findViewById(R.id.progress_main)
@@ -137,7 +137,7 @@ class MainView @Inject constructor(private val activity: AppCompatActivity,
     }
 
     override fun setVisibleProgressMain(isVisible: Boolean) {
-        progressBar.visibility = if(isVisible) View.VISIBLE else View.INVISIBLE
+        progressBar.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

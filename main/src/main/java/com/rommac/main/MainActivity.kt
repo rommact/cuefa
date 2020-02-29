@@ -7,7 +7,6 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.rommac.core_api.mediator.AppWithFacade
-import com.rommac.cuefa.ui.main.MainView
 import com.rommac.mvp.CommonView
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

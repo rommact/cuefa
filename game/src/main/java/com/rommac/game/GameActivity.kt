@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
-import com.rommac.cuefa.ui.game.GameContract
-import com.rommac.cuefa.ui.game.PresenterFactory
 import javax.inject.Inject
 
 

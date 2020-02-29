@@ -1,10 +1,11 @@
 package com.rommac.game
 
 import com.rommac.core_api.ProvidersFacade
+import com.rommac.core_api.scope.ActivityScope
 import dagger.Component
 import javax.inject.Singleton
 
-@Singleton
+@ActivityScope
 @Component(
     modules = [GameModule::class],
     dependencies = [ProvidersFacade::class]

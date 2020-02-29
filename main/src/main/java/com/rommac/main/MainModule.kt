@@ -2,12 +2,8 @@ package com.rommac.main
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.rommac.core_api.interactor.AuthDataProvider
 import com.rommac.core_api.interactor.AuthInteractor
 import com.rommac.core_api.mediator.AuthMediator
-import com.rommac.cuefa.ui.main.MainPresenter
-import com.rommac.cuefa.ui.main.MainPresenterFactory
-import com.rommac.cuefa.ui.main.MainView
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

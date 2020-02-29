@@ -2,7 +2,7 @@ package com.rommac.core_impl.di
 
 import com.rommac.core_api.interactor.AuthDataProvider
 import com.rommac.core_api.network.Api
-import com.rommac.cuefa.network.NetworkService
+import com.rommac.core_api.network.NetworkService
 import dagger.Module
 import dagger.Provides
 import java.util.concurrent.TimeUnit

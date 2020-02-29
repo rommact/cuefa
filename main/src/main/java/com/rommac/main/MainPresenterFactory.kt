@@ -1,4 +1,4 @@
-package com.rommac.cuefa.ui.main
+package com.rommac.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

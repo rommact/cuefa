@@ -1,4 +1,4 @@
-package com.rommac.cuefa.ui.session
+package com.rommac.sessions
 
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.getOpponent
 import com.rommac.core_api.dto.getOwner
-
-import com.rommac.sessions.R
 
 
 class SessionListAdapter(val listener: Listener): RecyclerView.Adapter<SessionListAdapter.SessionViewHolder>() {

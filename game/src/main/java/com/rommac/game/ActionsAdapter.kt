@@ -1,26 +1,25 @@
-package com.rommac.cuefa.ui.game
+package com.rommac.game
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.rommac.cuefa.network.dto.session.ACTION_TYPE
-import com.rommac.game.R
+import com.rommac.core_api.network.dto.session.ACTION_TYPE
 
-class ActionsAdapter(private val onItemClickListener: OnItemClickListener)
-    : RecyclerView.Adapter<ActionsAdapter.ViewHolder>() {
+class ActionsAdapter(private val onItemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<ActionsAdapter.ViewHolder>() {
 
-    var data:List<Action> = ArrayList()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+    var data: List<Action> = ArrayList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     var isEnabled = true
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -35,12 +34,12 @@ class ActionsAdapter(private val onItemClickListener: OnItemClickListener)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val action = data[position]
         holder.imageIcon.setImageResource(action.iconResId)
-        if(isEnabled){
+        if (isEnabled) {
             holder.itemView.setOnClickListener {
                 onItemClickListener.onItemClick(action.actionType)
             }
             holder.imageIcon.imageAlpha = 255
-        }else{
+        } else {
             holder.itemView.setOnClickListener(null)
             holder.imageIcon.imageAlpha = 100
         }
@@ -54,10 +53,10 @@ class ActionsAdapter(private val onItemClickListener: OnItemClickListener)
 
     data class Action(
         val actionType: ACTION_TYPE,
-        val iconResId:Int
+        val iconResId: Int
     )
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onItemClick(actionType: ACTION_TYPE)
     }
 }

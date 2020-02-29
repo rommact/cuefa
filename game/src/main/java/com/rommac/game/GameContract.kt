@@ -1,9 +1,9 @@
-package com.rommac.cuefa.ui.game
+package com.rommac.game
 
 import com.rommac.mvp.MvpPresenter
 import com.rommac.mvp.MvpView
 import com.rommac.core_api.dto.GameSession
-import com.rommac.cuefa.network.dto.session.ACTION_TYPE
+import com.rommac.core_api.network.dto.session.ACTION_TYPE
 
 interface GameContract {
     interface View: MvpView {

@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.mvp.BaseView
-import com.rommac.cuefa.network.dto.session.ACTION_TYPE
-import com.rommac.cuefa.ui.game.ActionsAdapter
-import com.rommac.cuefa.ui.game.GameContract
+import com.rommac.core_api.network.dto.session.ACTION_TYPE
 
 class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
     GameContract.View, ActionsAdapter.OnItemClickListener {

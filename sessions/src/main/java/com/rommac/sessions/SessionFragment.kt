@@ -7,10 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
-import com.rommac.cuefa.ui.session.SessionPresenterFactory
-import com.rommac.cuefa.ui.session.SessionsContract
-import com.rommac.cuefa.ui.session.SessionsPresenter
-import com.rommac.cuefa.ui.session.SessionsViewImpl
 import com.rommac.mvp.BaseFragment
 import javax.inject.Inject
 

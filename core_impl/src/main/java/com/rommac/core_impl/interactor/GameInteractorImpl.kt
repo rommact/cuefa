@@ -3,8 +3,8 @@ package com.rommac.core_impl.interactor
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.interactor.GameInteractor
 import com.rommac.core_api.network.Api
-import com.rommac.cuefa.network.dto.session.ACTION_TYPE
-import com.rommac.cuefa.network.dto.session.ActionBody
+import com.rommac.core_api.network.dto.session.ACTION_TYPE
+import com.rommac.core_api.network.dto.session.ActionBody
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

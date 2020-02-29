@@ -4,8 +4,7 @@ import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.getOpponent
 import com.rommac.core_api.interactor.GameInteractor
-import com.rommac.cuefa.network.dto.session.ACTION_TYPE
-import com.rommac.cuefa.ui.game.GameContract
+import com.rommac.core_api.network.dto.session.ACTION_TYPE
 import javax.inject.Inject
 
 class GamePresenterImpl@Inject constructor(private val gameInteractor: GameInteractor):

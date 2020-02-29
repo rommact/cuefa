@@ -2,11 +2,12 @@ package com.rommac.main
 
 import androidx.appcompat.app.AppCompatActivity
 import com.rommac.core_api.ProvidersFacade
+import com.rommac.core_api.scope.ActivityScope
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
-@Singleton
+@ActivityScope
 @Component(
     modules = [MainModule::class, MainModule.MainModuleProviders::class],
     dependencies = [ProvidersFacade::class]

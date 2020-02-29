@@ -1,9 +1,8 @@
-package com.rommac.cuefa.ui.game
+package com.rommac.game
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.interactor.GameInteractor
-import com.rommac.game.GamePresenterImpl
 import javax.inject.Inject
 import javax.inject.Provider
 

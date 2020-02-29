@@ -1,10 +1,11 @@
-package com.rommac.cuefa.ui.session
+package com.rommac.sessions
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.interactor.SessionInteractor
+import com.rommac.sessions.SessionsContract
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

@@ -1,10 +1,7 @@
-package com.rommac.cuefa.network.dto
+package com.rommac.core_api.network.dto
 
-import com.google.gson.annotations.Expose
 
-data class AuthResponse (
-    @Expose
-    val status:Boolean,
-    @Expose
-    val balance:Int
+data class AuthResponse(
+    val status: Boolean,
+    val balance: Int
 )

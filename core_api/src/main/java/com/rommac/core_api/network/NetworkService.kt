@@ -1,4 +1,4 @@
-package com.rommac.cuefa.network
+package com.rommac.core_api.network
 
 
 object NetworkService {
