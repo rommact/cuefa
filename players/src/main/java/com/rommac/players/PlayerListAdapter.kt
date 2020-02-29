@@ -28,7 +28,7 @@ class PlayerListAdapter(val listener: Listener): RecyclerView.Adapter<PlayerList
     }
 
     class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val txtName:TextView = itemView.findViewById(R.id.txtName)
+        val txtName:TextView = itemView.findViewById(R.id.txt_name)
         fun bind(name:String){
             txtName.text = name
         }
