@@ -1,8 +1,7 @@
 package com.rommac.core_api.mediator
 
 import android.content.Context
-import com.rommac.core_api.interactor.AuthDataProvider
-import com.rommac.core_api.network.Api
+import com.rommac.core_api.AuthDataProvider
 
 interface AppProvider {
 

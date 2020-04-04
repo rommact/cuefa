@@ -1,15 +1,17 @@
 package com.rommac.players
 
+import android.view.View
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.Player
 import com.rommac.mvp.BaseView
 
-class PlayersViewImpl(private val fragment: Fragment) : BaseView(fragment.context!!), PlayersContract.View,
+class PlayersViewImpl(private val rootView: View, private val lifecycle: Lifecycle) : BaseView(rootView.context), PlayersContract.View,
     PlayerListAdapter.Listener {
 
     private lateinit var editQuery: EditText
@@ -18,10 +20,10 @@ class PlayersViewImpl(private val fragment: Fragment) : BaseView(fragment.contex
     lateinit var playerListAdapter: PlayerListAdapter
 
     fun onFinishInaflate(playersPresenter: PlayersContract.Presenter): PlayersContract.View {
-        listPlayers = fragment.view!!.findViewById(R.id.list_players)
-        editQuery = fragment.view!!.findViewById(R.id.edit_query)
+        listPlayers = rootView.findViewById(R.id.list_players)
+        editQuery = rootView.findViewById(R.id.edit_query)
         presenter = playersPresenter
-        presenter.attachView(this, fragment.lifecycle)
+        presenter.attachView(this, lifecycle)
         initViews()
         return this
     }
@@ -29,17 +31,15 @@ class PlayersViewImpl(private val fragment: Fragment) : BaseView(fragment.contex
     private fun initViews() {
         playerListAdapter = PlayerListAdapter(this)
         listPlayers.adapter = playerListAdapter
-        listPlayers.layoutManager = LinearLayoutManager(fragment.activity)
-
-        presenter.getPlayersLiveData().observe(fragment,
-            Observer<List<Player>> {
-                playerListAdapter.data = it
-                playerListAdapter.notifyDataSetChanged()
-            })
-
+        listPlayers.layoutManager = LinearLayoutManager(rootView.context)
         editQuery.addTextChangedListener(afterTextChanged = {
             presenter.onQueryTextChanged(it.toString())
         })
+    }
+
+    override fun setPlayers(players: List<Player>) {
+        playerListAdapter.data = players
+        playerListAdapter.notifyDataSetChanged()
     }
 
     override fun onItemClicked(player: Player) {

@@ -2,7 +2,6 @@ package com.rommac.sessions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.rommac.core_api.interactor.SessionInteractor
 import javax.inject.Inject
 import javax.inject.Provider
 

@@ -2,8 +2,7 @@ package com.rommac.main
 
 import android.app.Activity
 import android.content.Intent
-import com.rommac.core_api.interactor.AuthDataProvider
-import com.rommac.core_api.interactor.AuthInteractor
+import com.rommac.core_api.AuthDataProvider
 import com.rommac.mvp.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

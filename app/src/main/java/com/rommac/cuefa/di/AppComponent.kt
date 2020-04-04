@@ -2,7 +2,9 @@ package com.rommac.cuefa.di
 
 import android.app.Application
 import android.content.Context
+import com.rommac.core_api.AuthDataProvider
 import com.rommac.core_api.mediator.AppProvider
+import com.rommac.network_api.NetworkProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -22,6 +24,7 @@ interface AppComponent : AppProvider {
                 .build().also {
                     appComponent = it
                 }
+//            return null!!
         }
     }
 

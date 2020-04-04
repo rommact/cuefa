@@ -7,11 +7,10 @@ import com.rommac.core_api.dto.Player
 
 interface PlayersContract {
     interface View: MvpView {
-
+        fun setPlayers(players: List<Player>)
     }
     interface Presenter: MvpPresenter<View> {
         fun onQueryTextChanged(text:String)
         fun onItemClicked(player: Player)
-        fun getPlayersLiveData():LiveData<List<Player>>
     }
 }

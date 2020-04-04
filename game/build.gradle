@@ -37,11 +37,13 @@ dependencies {
     implementation project(':core_api')
     implementation project(':mvp')
     implementation project(':ui_core')
+    api project(':network_api')
     implementation dagger
     kapt daggerCompiler
     implementation rxjava2
     implementation constraintlayout
     implementation room
+    implementation retrofit
     implementation recyclerview
     kapt roomCompiler
     testImplementation 'junit:junit:4.12'

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.rommac.core_api.network.dto.session.ACTION_TYPE
+import com.rommac.core_api.dto.ACTION_TYPE
 
 class ActionsAdapter(private val onItemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<ActionsAdapter.ViewHolder>() {

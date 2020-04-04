@@ -1,27 +1,25 @@
 package com.rommac.main
 
 import com.google.firebase.auth.FirebaseAuth
-import com.rommac.core_api.interactor.AuthData
-import com.rommac.core_api.interactor.AuthInteractor
-import com.rommac.core_api.network.Api
-import com.rommac.core_api.network.dto.AuthBody
-import com.rommac.core_api.interactor.AuthDataProvider
-import io.reactivex.Observable
+import com.rommac.core_api.AuthDataProvider
+import com.rommac.core_api.dto.AuthData
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AuthInteractorImpl
-@Inject constructor(private val api: Api): AuthInteractor {
+@Inject constructor(private val api: MainApi): AuthInteractor {
     companion object: AuthDataProvider {
-        private var currentAuthData: AuthData = AuthData(false, 0, "","")
+        private var currentAuthData: AuthData =
+            AuthData(false, 0, "", "")
 
         override var authData: AuthData
             get() = currentAuthData
             set(value) {}
     }
 
-    override fun signIn():Observable<AuthData> {
+    override fun signIn():Single<AuthData> {
         val user = FirebaseAuth.getInstance().currentUser
         val email = user?.email!!
         val name = user.displayName!!
@@ -39,8 +37,8 @@ class AuthInteractorImpl
             adid
         )
         return api.auth(authData)
-            .map { AuthData(it.status, it.balance,email, uid) }
-            .doOnNext {
+            .map { AuthData(it.status, it.balance, email, uid) }
+            .doOnSuccess {
                 currentAuthData = it
             }
             .subscribeOn(Schedulers.io())

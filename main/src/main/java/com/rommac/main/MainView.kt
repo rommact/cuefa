@@ -128,11 +128,11 @@ class MainView @Inject constructor(
         txtAuth.visibility = View.GONE
     }
 
-    override fun showProgressBar() = activity.runOnUiThread {
+    override fun showProgressBar()  {
         progressBar.visibility = View.VISIBLE
     }
 
-    override fun hideProgressBar() = activity.runOnUiThread {
+    override fun hideProgressBar()  {
         progressBar.visibility = View.INVISIBLE
     }
 

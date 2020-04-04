@@ -1,7 +1,7 @@
 package com.rommac.core_api.database
 
 import androidx.room.*
-import com.rommac.core_api.dto.PlayerItem
+import com.rommac.core_api.database.dto.PlayerItem
 import io.reactivex.Flowable
 import io.reactivex.Observable
 

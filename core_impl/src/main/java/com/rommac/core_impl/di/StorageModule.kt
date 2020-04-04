@@ -1,13 +1,16 @@
 package com.rommac.core_impl.di
 
+import com.rommac.core_api.database.PlayerDao
 import com.rommac.core_api.storage.PlayersStorage
-import com.rommac.core_impl.interactor.PlayerInteractorImpl
-import dagger.Binds
+import com.rommac.core_impl.storage.LocalPlayersStorage
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class StorageModule {
+class StorageModule {
 
-    @Binds
-    abstract fun providePlayerStorage(playerInteractor: PlayerInteractorImpl): PlayersStorage
+    @Provides
+    fun providePlayerStorage(playerDao: PlayerDao): PlayersStorage{
+        return LocalPlayersStorage(playerDao)
+    }
 }

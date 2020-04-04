@@ -3,11 +3,10 @@ package com.rommac.game
 import com.rommac.mvp.BasePresenter
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.getOpponent
-import com.rommac.core_api.interactor.GameInteractor
-import com.rommac.core_api.network.dto.session.ACTION_TYPE
+import com.rommac.core_api.dto.ACTION_TYPE
 import javax.inject.Inject
 
-class GamePresenterImpl@Inject constructor(private val gameInteractor: GameInteractor):
+class GamePresenterImpl @Inject constructor(private val gameInteractor: GameInteractor):
     GameContract.Presenter, BasePresenter<GameContract.View>() {
 
     private lateinit var mGameSession: GameSession

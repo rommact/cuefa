@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.mvp.BaseView
-import com.rommac.core_api.network.dto.session.ACTION_TYPE
+import com.rommac.core_api.dto.ACTION_TYPE
 
 class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
     GameContract.View, ActionsAdapter.OnItemClickListener {
@@ -46,7 +46,7 @@ class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
         presenter.onActionClicked(actionType)
     }
 
-    override fun setSelectedActionMy(actionType: ACTION_TYPE) = runOnUiThread{
+    override fun setSelectedActionMy(actionType: ACTION_TYPE) {
         imageSelectedMy.setImageResource(getActionIcon(actionType))
     }
 
@@ -55,14 +55,14 @@ class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
     }
 
 
-    override fun setOpponentName(name: String) = runOnUiThread{
+    override fun setOpponentName(name: String) {
         txtOpponentName.text = name
     }
-    override fun setActionsList(actions: List<ACTION_TYPE>) = runOnUiThread{
+    override fun setActionsList(actions: List<ACTION_TYPE>) {
         adapter.data = actions.map { createAction(it) }
     }
 
-    override fun setOpponentProgressVisibility(visible: Boolean) = runOnUiThread{
+    override fun setOpponentProgressVisibility(visible: Boolean) {
         //TODO
     }
 
@@ -70,12 +70,12 @@ class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
         activity.finish()
     }
 
-    override fun setMyProgressVisibility(visible: Boolean) = runOnUiThread{
+    override fun setMyProgressVisibility(visible: Boolean) {
         progressBarMy.visibility = if (visible) VISIBLE else GONE
         imageSelectedMy.visibility = if (!visible) VISIBLE else GONE
     }
 
-    override fun setEnabledUI(enabled: Boolean) = runOnUiThread{
+    override fun setEnabledUI(enabled: Boolean) {
         adapter.isEnabled = enabled
     }
 
@@ -92,7 +92,4 @@ class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
         ACTION_TYPE.SCISSORS -> ActionsAdapter.Action(actionType, getActionIcon(actionType))
     }
 
-    private fun runOnUiThread(runnable: () -> Unit){
-        activity.runOnUiThread(runnable)
-    }
 }

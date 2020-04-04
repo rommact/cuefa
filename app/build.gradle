@@ -34,13 +34,16 @@ apply from: "$project.rootDir/scripts/deps_versions.gradle"
 dependencies {
 
     implementation project(':core')
+    implementation project(':network')
     implementation project(':main')
-
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation dagger
+    implementation jsr330
+    implementation retrofit
     kapt daggerCompiler
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

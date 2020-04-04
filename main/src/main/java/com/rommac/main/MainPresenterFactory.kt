@@ -2,8 +2,7 @@ package com.rommac.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.rommac.core_api.interactor.AuthDataProvider
-import com.rommac.core_api.interactor.AuthInteractor
+import com.rommac.core_api.AuthDataProvider
 import javax.inject.Inject
 import javax.inject.Provider
 

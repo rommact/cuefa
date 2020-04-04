@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.network_api.AppWithNetwork
 import javax.inject.Inject
 
 class PlayersFragment : Fragment(){
@@ -29,12 +30,15 @@ class PlayersFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         inject()
         presenter = ViewModelProvider(this, presenterFactory).get(PlayersPresenter::class.java)
-        playersView = PlayersViewImpl(this)
+        playersView = PlayersViewImpl(view,lifecycle)
             .onFinishInaflate(presenter)
     }
 
     private fun inject(){
-        PlayersComponent.create((activity!!.application as AppWithFacade).getFacade()).inject(this)
+        PlayersComponent.create(
+            (activity!!.application as AppWithFacade).getFacade(),
+            (activity!!.application as AppWithNetwork).getNetworkFacade()
+        ).inject(this)
     }
 
 }

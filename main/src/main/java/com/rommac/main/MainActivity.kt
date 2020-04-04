@@ -8,6 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.rommac.core_api.mediator.AppWithFacade
 import com.rommac.mvp.CommonView
+import com.rommac.network_api.AppWithNetwork
+import com.rommac.network_api.NetworkProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity(), CommonView {
     @Inject
     lateinit var mainView: MainContract.View
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,7 +34,11 @@ class MainActivity : AppCompatActivity(), CommonView {
     }
 
     private fun inject() {
-        MainComponent.create((application as AppWithFacade).getFacade(),this).inject(this)
+        MainComponent.create(
+                (application as AppWithFacade).getFacade(),
+                (application as AppWithNetwork).getNetworkFacade(),
+                this
+            ).inject(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

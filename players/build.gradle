@@ -40,13 +40,14 @@ dependencies {
     implementation constraintlayout
     implementation project(':core_api')
     implementation project(':mvp')
+    api project(':network_api')
     implementation dagger
     implementation rxjava2
     implementation recyclerview
     kapt daggerCompiler
     implementation room
     kapt roomCompiler
-
+    implementation retrofit
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

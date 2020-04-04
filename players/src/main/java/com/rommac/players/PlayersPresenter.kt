@@ -14,20 +14,19 @@ class PlayersPresenter
 @Inject constructor(private val playersRepository: PlayersStorage) :
     PlayersContract.Presenter, BasePresenter<PlayersContract.View>() {
 
-    private val playersData: MutableLiveData<List<Player>> = MutableLiveData()
 
     private val limit = 10
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
     override fun onQueryTextChanged(text: String) {
         if(text.isEmpty()) {
-            playersData.postValue(ArrayList())
+            view?.setPlayers(ArrayList())
             return
         }
         val subscribe = playersRepository.getPlayers(text, limit)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                playersData.postValue(it)
+                view?.setPlayers(it)
             }, {
 
             })
@@ -39,12 +38,8 @@ class PlayersPresenter
         //TODO
     }
 
-    override fun getPlayersLiveData(): LiveData<List<Player>> {
-        return playersData
-    }
-
     override fun viewIsReady() {
-
+        //TODO
     }
 
     override fun destroy() {

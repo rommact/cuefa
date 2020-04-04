@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.network_api.AppWithNetwork
 import javax.inject.Inject
 
 
@@ -31,6 +32,9 @@ class GameActivity : AppCompatActivity() {
 
 
     private fun inject(){
-        GameComponent.create((application as AppWithFacade).getFacade()).inject(this)
+        GameComponent.create(
+            (application as AppWithFacade).getFacade(),
+            (application as AppWithNetwork).getNetworkFacade()
+        ).inject(this)
     }
 }

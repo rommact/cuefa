@@ -1,17 +1,18 @@
 package com.rommac.sessions
 
 import android.view.View
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.GameSession
 import com.rommac.mvp.BaseFragment
-import com.rommac.mvp.BaseFragmentView
+import com.rommac.mvp.BaseChildView
+import com.rommac.mvp.CommonView
 import com.rommac.ui_core.BottomMenuItem
 import com.rommac.ui_core.BottomSheetMenu
 
 
-class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fragment),
+class SessionsViewImpl(private val rootView:View, private val lifecycle:Lifecycle, commonView: CommonView) : BaseChildView(commonView, rootView.context),
     SessionsContract.View,
     SessionListAdapter.Listener {
 
@@ -22,10 +23,10 @@ class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fr
 
 
     fun onFinishInaflate(playersPresenter: SessionsContract.Presenter): SessionsContract.View {
-        listPlayers = fragment.view!!.findViewById(R.id.list_players)
-        btnAddSession = fragment.view!!.findViewById(R.id.btn_add_session)
+        listPlayers = rootView.findViewById(R.id.list_players)
+        btnAddSession = rootView.findViewById(R.id.btn_add_session)
         presenter = playersPresenter
-        presenter.attachView(this, fragment.lifecycle)
+        presenter.attachView(this, lifecycle)
         initViews()
         presenter.viewIsReady()
         return this
@@ -34,18 +35,11 @@ class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fr
     private fun initViews() {
         sessionListAdapter = SessionListAdapter(this)
         listPlayers.adapter = sessionListAdapter
-        listPlayers.layoutManager = LinearLayoutManager(fragment.activity)
+        listPlayers.layoutManager = LinearLayoutManager(rootView.context)
 
         btnAddSession.setOnClickListener {
             presenter.onAddSessionClicked()
         }
-
-        presenter.getSessionsLiveData().observe(fragment,
-            Observer<List<GameSession>> {
-                sessionListAdapter.data = it
-                sessionListAdapter.notifyDataSetChanged()
-            })
-
     }
 
     override fun onItemClicked(gameSession: GameSession) {
@@ -54,7 +48,7 @@ class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fr
 
     override fun showConfirmSessionCreation() {
         val items: ArrayList<BottomMenuItem> = ArrayList()
-        val bottomDialog = BottomSheetMenu(fragment.context!!, items)
+        val bottomDialog = BottomSheetMenu(rootView.context, items)
         items.addAll(
             arrayListOf(
                 BottomMenuItem(R.drawable.ic_check_black_24dp, R.string.ok) {
@@ -67,5 +61,10 @@ class SessionsViewImpl(private val fragment: BaseFragment) : BaseFragmentView(fr
         )
         bottomDialog.show()
 
+    }
+
+    override fun setSessions(it: List<GameSession>) {
+        sessionListAdapter.data = it
+        sessionListAdapter.notifyDataSetChanged()
     }
 }

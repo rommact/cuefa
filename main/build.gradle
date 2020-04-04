@@ -41,11 +41,15 @@ dependencies {
     implementation project(':players')
     implementation project(':sessions')
     implementation project(':ui_core')
+    api project(':network')
     implementation dagger
     kapt daggerCompiler
     implementation rxjava2
     implementation material
     implementation constraintlayout
+    implementation retrofit
+    implementation retrofitGson
+
     implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
     implementation 'com.google.firebase:firebase-core:16.0.6'
     testImplementation 'junit:junit:4.12'
