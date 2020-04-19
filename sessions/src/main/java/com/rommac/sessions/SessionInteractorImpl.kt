@@ -4,6 +4,7 @@ package com.rommac.sessions
 import com.rommac.core_api.dto.*
 import com.rommac.network_api.dto.toGameSession
 import com.rommac.network_api.dto.toGameSessionItem
+import com.rommac.sessions.network.SessionsApi
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -12,9 +13,9 @@ import javax.inject.Inject
 class SessionInteractorImpl @Inject constructor(private val api: SessionsApi) :
     SessionInteractor {
 
-    override fun join(gameSession: GameSession): Single<GameSession> {
+    override fun join(gameSession: GameSession): Single<GameSessionData> {
         return api.join(gameSession.toGameSessionItem())
-            .map { it.toGameSession() }
+            .map { GameSessionData(it.gameSession.toGameSession(), GameSessionState(it.gameSessionState.actions,it.gameSessionState.winnerUid)) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
@@ -50,8 +51,11 @@ class SessionInteractorImpl @Inject constructor(private val api: SessionsApi) :
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-
-
-
+    override fun getState(gameSession: GameSession): Single<GameSessionState> {
+        return api.state()
+            .map { GameSessionState(it.actions, it.winnerUid) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 }
 

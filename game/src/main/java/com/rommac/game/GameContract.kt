@@ -4,6 +4,7 @@ import com.rommac.mvp.MvpPresenter
 import com.rommac.mvp.MvpView
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.ACTION_TYPE
+import com.rommac.core_api.dto.GameSessionState
 
 interface GameContract {
     interface View: MvpView {
@@ -19,6 +20,7 @@ interface GameContract {
 
     interface Presenter: MvpPresenter<View> {
         var gameSession: GameSession
+        var gameSessionState: GameSessionState
         fun onActionClicked(actionType: ACTION_TYPE)
         fun onExitClicked()
     }

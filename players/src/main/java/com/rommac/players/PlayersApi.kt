@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface PlayersApi {
-    @GET("players.php")
+    @GET("players")
     fun getPlayers(@Query("query") query: String,
                    @Query("limit") limit: Int): Single<List<PlayerItem>>
 }

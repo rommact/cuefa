@@ -17,4 +17,6 @@
     <string name="sessions">Сессии</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="create_session_confirm">Создать новую игру?</string>
+    <string name="join_session_confirm">Присоединиться к игре?</string>
 </resources>

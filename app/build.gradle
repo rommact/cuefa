@@ -35,7 +35,7 @@ dependencies {
 
     implementation project(':core')
     implementation project(':network')
-    implementation project(':main')
+    api project(':main')
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 

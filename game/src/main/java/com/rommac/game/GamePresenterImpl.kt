@@ -1,15 +1,20 @@
 package com.rommac.game
 
+import android.util.Log
+import com.rommac.core_api.AuthDataProvider
+import com.rommac.core_api.dto.*
 import com.rommac.mvp.BasePresenter
-import com.rommac.core_api.dto.GameSession
-import com.rommac.core_api.dto.getOpponent
-import com.rommac.core_api.dto.ACTION_TYPE
 import javax.inject.Inject
 
-class GamePresenterImpl @Inject constructor(private val gameInteractor: GameInteractor):
+class GamePresenterImpl @Inject constructor(private val gameInteractor: GameInteractor, private val authData: AuthData):
     GameContract.Presenter, BasePresenter<GameContract.View>() {
 
     private lateinit var mGameSession: GameSession
+    private lateinit var mGameSessionState: GameSessionState
+
+    override var gameSessionState: GameSessionState
+        get() = mGameSessionState
+        set(value) {mGameSessionState = value}
     override var gameSession: GameSession
         get() = mGameSession
         set(value) {mGameSession = value}
@@ -23,6 +28,7 @@ class GamePresenterImpl @Inject constructor(private val gameInteractor: GameInte
                 view?.setMyProgressVisibility(false)
                 view?.setSelectedActionMy(actionType)
             },  {
+                Log.e("","",it)
                 myActionProgress(false)
                 showError(R.string.any_error)
             })
@@ -46,13 +52,26 @@ class GamePresenterImpl @Inject constructor(private val gameInteractor: GameInte
     }
 
     override fun viewIsReady() {
+
         view?.let {
             it.setActionsList(listOf(ACTION_TYPE.SCISSORS, ACTION_TYPE.STONE, ACTION_TYPE.PAPER))
-            it.setOpponentName(getOpponentName())
+            if(mGameSession.getOpponent() != null){
+                it.setOpponentName(mGameSession.getOpponent()!!.email)
+            }else{
+                it.setOpponentName("")
+            }
+
+            val actionMy = mGameSessionState.actions.find {it.uid ==  authData.uid}
+            val actionOpponent = mGameSessionState.actions.find {it.uid !=  authData.uid}
+            if(actionMy != null){
+                view?.setSelectedActionMy(ACTION_TYPE.values()[actionMy.action])
+            }
+            if(actionOpponent != null){
+                view?.setSelectedActionOpponent(ACTION_TYPE.values()[actionOpponent.action])
+            }
         }
     }
 
-    private fun getOpponentName():String = mGameSession.getOpponent()!!.email
 
 
 }

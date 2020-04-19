@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.mvp.BaseFragment
 import com.rommac.network_api.AppWithNetwork
 import javax.inject.Inject
 
-class PlayersFragment : Fragment(){
+class PlayersFragment : BaseFragment(){
 
 
     lateinit var presenter: PlayersContract.Presenter
@@ -37,7 +38,8 @@ class PlayersFragment : Fragment(){
     private fun inject(){
         PlayersComponent.create(
             (activity!!.application as AppWithFacade).getFacade(),
-            (activity!!.application as AppWithNetwork).getNetworkFacade()
+            (activity!!.application as AppWithNetwork).getNetworkFacade(),
+            this
         ).inject(this)
     }
 

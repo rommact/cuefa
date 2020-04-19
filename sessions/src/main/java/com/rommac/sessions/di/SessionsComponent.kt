@@ -1,34 +1,36 @@
-package com.rommac.players
+package com.rommac.sessions.di
 
-import android.content.Context
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.FragmentScope
 import com.rommac.mvp.BaseFragment
+import com.rommac.mvp.CommonView
 import com.rommac.network_api.NetworkProvider
+import com.rommac.sessions.SessionFragment
 import dagger.BindsInstance
 import dagger.Component
 
+
 @FragmentScope
 @Component(
-    modules = [PlayersModule::class],
+    modules = [SessionModule::class],
     dependencies = [ProvidersFacade::class, NetworkProvider::class]
 )
-interface PlayersComponent {
+interface SessionsComponent {
     companion object {
-        fun create(providersFacade: ProvidersFacade, networkProvider: NetworkProvider, fragment: BaseFragment): PlayersComponent {
-            return DaggerPlayersComponent
-                .builder()
-                .lifecycle(fragment.lifecycle)
-                .rooView(fragment.requireView())
+        fun create(providersFacade: ProvidersFacade, networkProvider: NetworkProvider, baseFragment: BaseFragment): SessionsComponent {
+            return DaggerSessionsComponent.builder()
+                .lifecycle(baseFragment.lifecycle)
+                .rooView(baseFragment.requireView())
+                .commonView(baseFragment.commonView)
                 .providersFacade(providersFacade)
                 .networkProvider(networkProvider)
                 .build()
         }
     }
 
-    fun inject(sessionFragment: PlayersFragment)
+    fun inject(sessionFragment: SessionFragment)
 
     @Component.Builder
     interface Builder {
@@ -37,10 +39,13 @@ interface PlayersComponent {
         @BindsInstance
         fun rooView(rootView: View): Builder
 
+        @BindsInstance
+        fun commonView(commonView: CommonView): Builder
+
         fun providersFacade(providersFacade: ProvidersFacade): Builder
 
         fun networkProvider(networkProvider: NetworkProvider): Builder
 
-        fun build(): PlayersComponent
+        fun build(): SessionsComponent
     }
 }

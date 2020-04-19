@@ -9,11 +9,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
 import com.rommac.mvp.BaseFragment
 import com.rommac.network_api.AppWithNetwork
+import com.rommac.sessions.di.SessionsComponent
 import javax.inject.Inject
 
 
 class SessionFragment : BaseFragment() {
     lateinit var presenter: SessionsContract.Presenter
+
+    @Inject
     lateinit var sessionView: SessionsContract.View
 
 
@@ -32,13 +35,13 @@ class SessionFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         inject()
         presenter = ViewModelProvider(this, presenterFactory).get(SessionsPresenter::class.java)
-        sessionView = SessionsViewImpl(view,lifecycle, commonView)
+        sessionView
             .onFinishInaflate(presenter)
     }
 
     private fun inject() {
         SessionsComponent.create((activity!!.application as AppWithFacade).getFacade(),
-            (activity!!.application as AppWithNetwork).getNetworkFacade()).inject(this)
+            (activity!!.application as AppWithNetwork).getNetworkFacade(),this).inject(this)
     }
 
 }

@@ -7,11 +7,13 @@ import com.rommac.core_api.database.DatabaseProvider
 import com.rommac.core_api.mediator.AppProvider
 import com.rommac.core_api.storage.StorageProvider
 import com.rommac.cuefa.App
+import com.rommac.main.di.MediatorsBindings
 import dagger.Component
 
 @Component(
     dependencies = [AppProvider::class, DatabaseProvider::class,
-        StorageProvider::class]
+        StorageProvider::class],
+    modules = [MediatorsBindings::class]
 )
 interface FacadeComponent : ProvidersFacade {
 

@@ -1,13 +1,12 @@
-package com.rommac.main
+package com.rommac.main.di
 
 import androidx.appcompat.app.AppCompatActivity
 import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.ActivityScope
+import com.rommac.main.MainActivity
 import com.rommac.network_api.NetworkFacade
-import com.rommac.network_api.NetworkProvider
 import dagger.BindsInstance
 import dagger.Component
-import javax.inject.Singleton
 
 @ActivityScope
 @Component(
@@ -17,8 +16,7 @@ import javax.inject.Singleton
 interface MainComponent {
     companion object {
         fun create(providersFacade: ProvidersFacade, networkFacade: NetworkFacade, activity: AppCompatActivity): MainComponent {
-            return DaggerMainComponent
-                .builder()
+            return DaggerMainComponent.builder()
                 .activity(activity)
                 .providersFacade(providersFacade)
                 .networkFacade(networkFacade)

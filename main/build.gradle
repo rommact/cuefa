@@ -39,6 +39,7 @@ dependencies {
     api project(':core')
     implementation project(':mvp')
     implementation project(':players')
+    api project(':game')
     implementation project(':sessions')
     implementation project(':ui_core')
     api project(':network')

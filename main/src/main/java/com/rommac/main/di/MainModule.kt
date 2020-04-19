@@ -1,8 +1,9 @@
-package com.rommac.main
+package com.rommac.main.di
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AuthMediator
+import com.rommac.main.*
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -14,7 +15,7 @@ abstract class MainModule {
     object MainModuleProviders{
         @JvmStatic
         @Provides
-        fun provideMainPresenter(activity: AppCompatActivity, mainPresenterFactory: MainPresenterFactory): MainContract.Presenter{
+        fun provideMainPresenter(activity: AppCompatActivity, mainPresenterFactory: MainPresenterFactory): MainContract.Presenter {
             return ViewModelProvider(activity, mainPresenterFactory).get(MainPresenter::class.java)
         }
 

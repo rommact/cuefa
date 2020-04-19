@@ -7,9 +7,9 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.main.di.MainComponent
 import com.rommac.mvp.CommonView
 import com.rommac.network_api.AppWithNetwork
-import com.rommac.network_api.NetworkProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), CommonView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         inject()
         mainView.onFinishInflate(presenter)
 

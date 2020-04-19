@@ -1,5 +1,6 @@
 package com.rommac.network_impl
 
+import com.google.gson.annotations.SerializedName
 import com.rommac.core_api.AuthDataProvider
 import dagger.Module
 import dagger.Provides
@@ -8,15 +9,17 @@ import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
 
 
 @Module
 class NetworkModule {
     companion object{
-        const val BASE_URL = "http://192.168.1.175/cuefa/"
+        const val BASE_URL = "http://192.168.1.175:8080/"
     }
     @Provides
     @Singleton
@@ -42,5 +45,4 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
 }

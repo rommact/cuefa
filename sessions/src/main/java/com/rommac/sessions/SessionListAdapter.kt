@@ -33,13 +33,14 @@ class SessionListAdapter(val listener: Listener): RecyclerView.Adapter<SessionLi
     class SessionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val txtOpponentName:TextView = itemView.findViewById(R.id.txt_opponent_name)
         private val txtSessionOwner:TextView = itemView.findViewById(R.id.txt_session_owner)
+        private val txtSessionStatus:TextView = itemView.findViewById(R.id.txt_session_status)
         fun bind(session: GameSession){
             val opponent = session.getOpponent()
             val owner = session.getOwner()
             if(opponent != null){
                 txtOpponentName.text = opponent.email
             }else{
-                txtOpponentName.text = "wait..."
+                txtOpponentName.text = ""
             }
 
             if(owner != null){
@@ -47,6 +48,9 @@ class SessionListAdapter(val listener: Listener): RecyclerView.Adapter<SessionLi
             }else{
                 txtSessionOwner.text = "error..."
             }
+
+            txtSessionStatus.text = session.status.name
+
 
         }
     }
