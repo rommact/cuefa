@@ -43,19 +43,11 @@ class MvpViewimplementsDetector: Detector(), UastScanner {
         }
     }
 
-    private fun checkSuperTypes(psiTypes: List<PsiType>): Boolean{
-        return psiTypes.any() {
-            //                    if(!it.canonicalText.contains("com.rommac"))
-//                        return false
-            if(checkSuperType(it))
-                return true
-            return checkSuperTypes(it.superTypes.map { it as PsiType });
-        }
+    private fun checkSuperTypes(psiTypes: List<PsiType>): Boolean = psiTypes.any {
+        checkSuperType(it) || checkSuperTypes(it.superTypes.map { it as PsiType })
     }
 
-    private fun checkSuperType(psiType: PsiType): Boolean{
-        return psiType.presentableText.contains("MvpView")
-    }
+    private fun checkSuperType(psiType: PsiType): Boolean = psiType.presentableText.contains("MvpView")
 
 
 

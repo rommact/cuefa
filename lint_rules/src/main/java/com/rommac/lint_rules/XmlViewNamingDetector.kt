@@ -26,7 +26,7 @@ class XmlViewNamingDetector: LayoutDetector() {
     }
 
     override fun visitAttribute(context: XmlContext, attribute: Attr) {
-        if(regex.containsMatchIn(attribute.name)){
+        if(regex.containsMatchIn(attribute.value)){
             context.report(ISSUE_XML_VIEW_NAMING,attribute,context.getNameLocation(attribute),"test")
         }
     }

@@ -10,15 +10,7 @@ import org.junit.Test
 class MvpViewImplTest : LintDetectorTest() {
 
     @Test
-    fun test(){
-//        lint()
-//            .allowMissingSdk()
-//            .files(kotlin("interface MvpView{}\n" +
-//                    "open class AppCompatActivity(){}\n" +
-//                    "class GameActivity : AppCompatActivity(), MvpView {}"))
-//            .issues(ISSUE_MVP_VIEW_IMPL)
-//            .run()
-//            .expectErrorCount(1)
+    fun testFoundOne(){
         lint()
             .allowMissingSdk()
             .files(kotlin("interface MvpView{}\n" +
@@ -31,16 +23,16 @@ class MvpViewImplTest : LintDetectorTest() {
     }
 
     @Test
-    fun test2(){
+    fun testFoundNothing(){
         lint()
             .allowMissingSdk()
             .files(kotlin("interface MvpView{}\n" +
                     "interface View: MvpView{}\n" +
                     "open class AppCompatActivity(){}\n" +
-                    "class GameActivity : AppCompatActivity(), View {}"))
+                    "class ViewImpl : View {}"))
             .issues(ISSUE_MVP_VIEW_IMPL)
             .run()
-            .expectErrorCount(1)
+            .expectErrorCount(0)
     }
 
     override fun getDetector(): Detector {
