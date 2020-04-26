@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.graphics.drawable.toBitmap
 
-class LoaderView(context: Context, attrs: AttributeSet?) :
+class CIrcleLoaderView(context: Context, attrs: AttributeSet?) :
     View(context, attrs) {
     private var firstImage: Bitmap? = null
     private var secondImage: Bitmap? = null
@@ -30,6 +30,8 @@ class LoaderView(context: Context, attrs: AttributeSet?) :
         canvas.drawBitmap(thirdImage, thirdMatrix, paint)
     }
 
+
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
@@ -45,16 +47,16 @@ class LoaderView(context: Context, attrs: AttributeSet?) :
     init {
         val a = context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.LoaderView,
+            R.styleable.CIrcleLoaderView,
             0, 0
         )
         try {
             val firstImageRes =
-                a.getDrawable(R.styleable.LoaderView_first_image) as VectorDrawable
+                a.getDrawable(R.styleable.CIrcleLoaderView_first_image) as VectorDrawable
             val secondImageRes =
-                a.getDrawable(R.styleable.LoaderView_second_image) as VectorDrawable
+                a.getDrawable(R.styleable.CIrcleLoaderView_second_image) as VectorDrawable
             val thirdImageRes =
-                a.getDrawable(R.styleable.LoaderView_third_image) as VectorDrawable
+                a.getDrawable(R.styleable.CIrcleLoaderView_third_image) as VectorDrawable
             firstImage = firstImageRes.toBitmap()
             secondImage = secondImageRes.toBitmap()
             thirdImage = thirdImageRes.toBitmap()
