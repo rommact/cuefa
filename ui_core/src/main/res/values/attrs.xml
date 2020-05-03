@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="LoaderView">
+    <declare-styleable name="HorizontalLoaderView">
+        <attr name="first_image" format="reference" />
+        <attr name="second_image" format="reference" />
+        <attr name="third_image" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="CIrcleLoaderView">
         <attr name="first_image" format="reference" />
         <attr name="second_image" format="reference" />
         <attr name="third_image" format="reference" />
