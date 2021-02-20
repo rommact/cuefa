@@ -6,7 +6,6 @@ import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.FragmentScope
 import com.rommac.mvp.BaseFragment
 import com.rommac.network_api.NetworkProvider
-import com.rommac.players.DaggerPlayersComponent
 import com.rommac.players.PlayersFragment
 import dagger.BindsInstance
 import dagger.Component

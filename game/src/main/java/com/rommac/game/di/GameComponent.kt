@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.ActivityScope
-import com.rommac.game.DaggerGameComponent
 import com.rommac.game.GameActivity
 import com.rommac.network_api.NetworkProvider
 import dagger.BindsInstance
