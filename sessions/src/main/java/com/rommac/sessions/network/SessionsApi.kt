@@ -15,7 +15,8 @@ interface SessionsApi {
     @GET("session/sessions")
     fun getSessions(@Query("status") status: Int? = null,
                     @Query("my") my: Boolean = false): Single<List<GameSessionItem>>
-
+    @GET("session/sessions/active")
+    fun getActiveSessions(): Single<List<GameSessionItem>>
     @POST("session/create")
     fun createSession(): Single<GameSessionItem>
 

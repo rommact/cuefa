@@ -47,16 +47,16 @@ class CIrcleLoaderView(context: Context, attrs: AttributeSet?) :
     init {
         val a = context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.CIrcleLoaderView,
+            R.styleable.LoaderView,
             0, 0
         )
         try {
             val firstImageRes =
-                a.getDrawable(R.styleable.CIrcleLoaderView_first_image) as VectorDrawable
+                a.getDrawable(R.styleable.LoaderView_first_image) as VectorDrawable
             val secondImageRes =
-                a.getDrawable(R.styleable.CIrcleLoaderView_second_image) as VectorDrawable
+                a.getDrawable(R.styleable.LoaderView_second_image) as VectorDrawable
             val thirdImageRes =
-                a.getDrawable(R.styleable.CIrcleLoaderView_third_image) as VectorDrawable
+                a.getDrawable(R.styleable.LoaderView_third_image) as VectorDrawable
             firstImage = firstImageRes.toBitmap()
             secondImage = secondImageRes.toBitmap()
             thirdImage = thirdImageRes.toBitmap()

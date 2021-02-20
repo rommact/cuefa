@@ -7,12 +7,6 @@ interface MvpPresenter<V : MvpView> {
 
     val TAG: String
 
-    fun attachView(mvpView: V, viewLifecycle: Lifecycle)
-
-    fun viewIsReady()
-
-    fun detachView()
-
     fun destroy()
 
 }

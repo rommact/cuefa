@@ -2,6 +2,7 @@ package com.rommac.players
 
 import com.rommac.core_api.dto.Player
 import com.rommac.network_api.dto.toPlayers
+import com.rommac.players.network.PlayersApi
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

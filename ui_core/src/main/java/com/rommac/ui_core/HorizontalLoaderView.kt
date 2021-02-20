@@ -33,16 +33,16 @@ class HorizontalLoaderView(context: Context, attrs: AttributeSet?) :
     init {
         val a = context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.HorizontalLoaderView,
+            R.styleable.LoaderView,
             0, 0
         )
         try {
             firstImageRes =
-                a.getDrawable(R.styleable.HorizontalLoaderView_first_image) as VectorDrawable
+                a.getDrawable(R.styleable.LoaderView_first_image) as VectorDrawable
             secondImageRes =
-                a.getDrawable(R.styleable.HorizontalLoaderView_second_image) as VectorDrawable
+                a.getDrawable(R.styleable.LoaderView_second_image) as VectorDrawable
             thirdImageRes =
-                a.getDrawable(R.styleable.HorizontalLoaderView_third_image) as VectorDrawable
+                a.getDrawable(R.styleable.LoaderView_third_image) as VectorDrawable
 
         } finally {
             a.recycle()

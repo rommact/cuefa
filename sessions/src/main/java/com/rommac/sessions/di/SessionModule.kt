@@ -1,10 +1,11 @@
 package com.rommac.sessions.di
 
 import android.view.View
-import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import com.rommac.core_api.mediator.GameMediator
-import com.rommac.mvp.CommonView
-import com.rommac.sessions.*
+import com.rommac.sessions.SessionInteractor
+import com.rommac.sessions.SessionInteractorImpl
+import com.rommac.sessions.SessionsViewImpl
 import com.rommac.sessions.network.SessionsApi
 import dagger.Module
 import dagger.Provides
@@ -18,14 +19,14 @@ class SessionModule {
     }
 
     @Provides
-    fun provideSessionView( rootView: View,  lifecycle: Lifecycle,
-                            gameMediator: GameMediator, commonView: CommonView
-    ): SessionsContract.View {
+    fun provideSessionView(
+        rootView: View, lifecycleOwner: LifecycleOwner,
+        gameMediator: GameMediator
+    ): SessionsViewImpl {
         return SessionsViewImpl(
             rootView,
-            lifecycle,
-            gameMediator,
-            commonView
+            lifecycleOwner,
+            gameMediator
         )
     }
 

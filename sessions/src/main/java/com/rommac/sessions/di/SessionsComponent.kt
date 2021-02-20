@@ -2,6 +2,7 @@ package com.rommac.sessions.di
 
 import android.view.View
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.FragmentScope
 import com.rommac.mvp.BaseFragment
@@ -21,7 +22,7 @@ interface SessionsComponent {
     companion object {
         fun create(providersFacade: ProvidersFacade, networkProvider: NetworkProvider, baseFragment: BaseFragment): SessionsComponent {
             return DaggerSessionsComponent.builder()
-                .lifecycle(baseFragment.lifecycle)
+                .lifecycleOwner(baseFragment.viewLifecycleOwner)
                 .rooView(baseFragment.requireView())
                 .commonView(baseFragment.commonView)
                 .providersFacade(providersFacade)
@@ -35,7 +36,7 @@ interface SessionsComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun lifecycle(lifecycle: Lifecycle): Builder
+        fun lifecycleOwner(lifecycle: LifecycleOwner): Builder
         @BindsInstance
         fun rooView(rootView: View): Builder
 

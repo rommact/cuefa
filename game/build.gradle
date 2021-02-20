@@ -31,9 +31,10 @@ android {
 apply from: "$project.rootDir/scripts/deps_versions.gradle"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
+
+     implementation stdlib
+    implementation appCompat
+    implementation coreCtx
     implementation project(':core_api')
     implementation project(':mvp')
     implementation project(':ui_core')

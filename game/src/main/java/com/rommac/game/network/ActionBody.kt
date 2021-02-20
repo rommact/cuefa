@@ -1,4 +1,4 @@
-package com.rommac.game
+package com.rommac.game.network
 
 import com.rommac.core_api.dto.ACTION_TYPE
 

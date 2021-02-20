@@ -3,6 +3,8 @@ package com.rommac.main
 import com.google.firebase.auth.FirebaseAuth
 import com.rommac.core_api.AuthDataProvider
 import com.rommac.core_api.dto.AuthData
+import com.rommac.main.network.AuthBody
+import com.rommac.main.network.MainApi
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

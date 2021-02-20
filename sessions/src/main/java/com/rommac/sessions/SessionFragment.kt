@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.mediator.AppWithFacade
 import com.rommac.mvp.BaseFragment
@@ -14,10 +15,9 @@ import javax.inject.Inject
 
 
 class SessionFragment : BaseFragment() {
-    lateinit var presenter: SessionsContract.Presenter
 
     @Inject
-    lateinit var sessionView: SessionsContract.View
+    lateinit var sessionView: SessionsViewImpl
 
 
     @Inject
@@ -34,9 +34,9 @@ class SessionFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inject()
-        presenter = ViewModelProvider(this, presenterFactory).get(SessionsPresenter::class.java)
+        val viewModel = ViewModelProvider(this, presenterFactory).get(SessionsViewModel::class.java)
         sessionView
-            .onFinishInaflate(presenter)
+            .onFinishInflate(viewModel,lifecycle)
     }
 
     private fun inject() {

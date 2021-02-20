@@ -19,7 +19,7 @@ import java.lang.reflect.Type
 @Module
 class NetworkModule {
     companion object{
-        const val BASE_URL = "http://192.168.1.175:8080/"
+        const val BASE_URL = "http://192.168.1.66:8080/"
     }
     @Provides
     @Singleton

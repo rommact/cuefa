@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.GameSessionState
 import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.game.di.GameComponent
 import com.rommac.network_api.AppWithNetwork
 import javax.inject.Inject
 
@@ -27,10 +28,10 @@ class GameActivity : AppCompatActivity() {
              intent.putExtra(ARG_SESSION_STATE, state)
         }
     }
-    private lateinit var gameView: GameViewImpl
-    private lateinit var presenter: GameContract.Presenter
     @Inject
-    lateinit var presenterFactory: PresenterFactory
+    lateinit var gameView: GameViewImpl
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
 
 
@@ -38,19 +39,20 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         inject()
-        presenter = ViewModelProvider(this, presenterFactory).get(GamePresenterImpl::class.java)
+        var viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModelImpl::class.java)
 
         intent.let {
-            presenter.gameSession = it.getParcelableExtra(ARG_SESSION)
-            presenter.gameSessionState = it.getSerializableExtra(ARG_SESSION_STATE) as GameSessionState
+            viewModel.gameSession = it.getParcelableExtra(ARG_SESSION)
+            viewModel.gameSessionState = it.getSerializableExtra(ARG_SESSION_STATE) as GameSessionState
         }
-        gameView = GameViewImpl(this)
-        gameView.onFinishInflate(presenter)
+        gameView.onFinishInflate(viewModel, lifecycle)
+
     }
 
 
     private fun inject(){
-        GameComponent.create(
+
+        GameComponent.create(this,
             (application as AppWithFacade).getFacade(),
             (application as AppWithNetwork).getNetworkFacade()
         ).inject(this)

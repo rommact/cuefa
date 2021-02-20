@@ -1,17 +1,21 @@
 package com.rommac.game
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.mvp.BaseView
 import com.rommac.core_api.dto.ACTION_TYPE
 
-class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
-    GameContract.View, ActionsAdapter.OnItemClickListener {
+class GameViewImpl(rootView: View,lifecycleOwner: LifecycleOwner): BaseView<GameViewModelImpl>(rootView, lifecycleOwner),
+     ActionsAdapter.OnItemClickListener {
 
     private lateinit var adapter: ActionsAdapter
     private lateinit var recActions: RecyclerView
@@ -19,63 +23,87 @@ class GameViewImpl(private val activity: AppCompatActivity): BaseView(activity),
     private lateinit var imageSelectedOpponent: ImageView
     private lateinit var txtOpponentName: TextView
     private lateinit var progressBarMy: ProgressBar
-    private lateinit var presenter: GameContract.Presenter
+    private lateinit var progressbarOpponent: ProgressBar
 
-
-    fun onFinishInflate(presenter: GameContract.Presenter): GameViewImpl {
-        this.presenter = presenter
-        initViews()
-        presenter.attachView(this, activity.lifecycle)
-        presenter.viewIsReady()
-        return this
-    }
-
-    private fun initViews(){
-        recActions = activity.findViewById(R.id.rec_actions)
-        imageSelectedMy = activity.findViewById(R.id.image_selected_my)
-        imageSelectedOpponent = activity.findViewById(R.id.image_selected_opponent)
-        txtOpponentName = activity.findViewById(R.id.txt_opponent_name)
-        progressBarMy = activity.findViewById(R.id.progress_bar_my)
+    override fun initViews(){
+        recActions = rootView.findViewById(R.id.rec_actions)
+        imageSelectedMy = rootView.findViewById(R.id.image_selected_my)
+        imageSelectedOpponent = rootView.findViewById(R.id.image_selected_opponent)
+        txtOpponentName = rootView.findViewById(R.id.txt_opponent_name)
+        progressBarMy = rootView.findViewById(R.id.progress_bar_my)
+        progressbarOpponent = rootView.findViewById(R.id.progressbar_opponent)
 
         adapter = ActionsAdapter(this)
-        recActions.layoutManager = GridLayoutManager(activity, 3)
+        recActions.layoutManager = GridLayoutManager(rootView.context, 3)
         recActions.adapter = adapter
+
     }
 
-    override fun onItemClick(actionType: ACTION_TYPE) {
-        presenter.onActionClicked(actionType)
+    override fun bindViewModel(){
+        viewModel.actionList.observe(lifecycleOwner, Observer {
+            setActionsList(it)
+        })
+
+        viewModel.myAction.observe(lifecycleOwner, Observer {
+            setSelectedActionMy(it)
+        })
+
+        viewModel.opponentAction.observe(lifecycleOwner, Observer {
+            setSelectedActionOpponent(it)
+        })
+
+        viewModel.opponentInProgress.observe(lifecycleOwner, Observer {
+            setOpponentProgressVisibility(it)
+        })
+
+        viewModel.opponentName.observe(lifecycleOwner, Observer {
+            setOpponentName(it)
+        })
+
+        viewModel.uiIsEnabled.observe(lifecycleOwner, Observer {
+            setEnabledUI(it)
+        })
+        viewModel.playerInProgress.observe(lifecycleOwner, Observer {
+            setMyProgressVisibility(it)
+        })
     }
 
-    override fun setSelectedActionMy(actionType: ACTION_TYPE) {
+     override fun onItemClick(actionType: ACTION_TYPE) {
+        viewModel.onActionClicked(actionType)
+    }
+
+     fun setSelectedActionMy(actionType: ACTION_TYPE) {
         imageSelectedMy.setImageResource(getActionIcon(actionType))
     }
 
-    override fun setSelectedActionOpponent(actionType: ACTION_TYPE) {
+     fun setSelectedActionOpponent(actionType: ACTION_TYPE) {
         imageSelectedOpponent.setImageResource(getActionIcon(actionType))
+        imageSelectedOpponent.visibility = VISIBLE
     }
 
 
-    override fun setOpponentName(name: String) {
+     fun setOpponentName(name: String) {
         txtOpponentName.text = name
     }
-    override fun setActionsList(actions: List<ACTION_TYPE>) {
+     fun setActionsList(actions: List<ACTION_TYPE>) {
         adapter.data = actions.map { createAction(it) }
     }
 
-    override fun setOpponentProgressVisibility(visible: Boolean) {
-        //TODO
+     fun setOpponentProgressVisibility(visible: Boolean) {
+//        progressbarOpponent.visibility = if(visible) View.VISIBLE else View.GONE
+        imageSelectedOpponent.visibility = if (!visible) VISIBLE else GONE
     }
 
-    override fun exit() {
-        activity.finish()
-    }
+//     fun exit() {
+//        rootView.finish()
+//    }
 
-    override fun setMyProgressVisibility(visible: Boolean) {
+     fun setMyProgressVisibility(visible: Boolean) {
         progressBarMy.visibility = if (visible) VISIBLE else GONE
         imageSelectedMy.visibility = if (!visible) VISIBLE else GONE
     }
 
-    override fun setEnabledUI(enabled: Boolean) {
+     fun setEnabledUI(enabled: Boolean) {
         adapter.isEnabled = enabled
     }
 

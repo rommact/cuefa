@@ -31,6 +31,27 @@ class SessionInteractorImpl @Inject constructor(private val api: SessionsApi) :
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    override fun getAll(): Single<List<GameSession>> {
+        return api.getSessions()
+            .map {
+                it.map { gameSessionItem ->
+                    gameSessionItem.toGameSession()
+                }
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun getActive(): Single<List<GameSession>> {
+        return api.getActiveSessions()
+            .map {
+                it.map { gameSessionItem ->
+                    gameSessionItem.toGameSession()
+                }
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
     override fun getNew(): Single<List<GameSession>> {
         return api.getSessions(STATUS.NEW.ordinal)
             .map {
@@ -41,7 +62,6 @@ class SessionInteractorImpl @Inject constructor(private val api: SessionsApi) :
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
-
     override fun create(): Single<GameSession> {
         return api.createSession()
             .map {

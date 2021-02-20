@@ -1,4 +1,4 @@
-package com.rommac.players
+package com.rommac.players.network
 
 import com.rommac.network_api.dto.PlayerItem
 import io.reactivex.Single

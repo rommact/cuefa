@@ -3,7 +3,7 @@ package com.rommac.network_api.dto
 import com.rommac.core_api.dto.Action
 
 data class GameSessionStateItem (
-    val actions: Array<Action>, val winnerUid: String
+    val actions: Array<Action>, val winnerUid: String, val selectedActionUsers: Array<String>
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
