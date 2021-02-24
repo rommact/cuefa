@@ -1,6 +1,7 @@
 package com.rommac.players.di
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.FragmentScope
@@ -20,7 +21,7 @@ interface PlayersComponent {
         fun create(providersFacade: ProvidersFacade, networkProvider: NetworkProvider, fragment: BaseFragment): PlayersComponent {
             return DaggerPlayersComponent.builder()
                 .lifecycleOwner(fragment.viewLifecycleOwner)
-                .rooView(fragment.requireView())
+                .fragment(fragment)
                 .providersFacade(providersFacade)
                 .networkProvider(networkProvider)
                 .build()
@@ -34,7 +35,7 @@ interface PlayersComponent {
         @BindsInstance
         fun lifecycleOwner(lifecycle: LifecycleOwner): Builder
         @BindsInstance
-        fun rooView(rootView: View): Builder
+        fun fragment(fragment: Fragment): Builder
 
         fun providersFacade(providersFacade: ProvidersFacade): Builder
 

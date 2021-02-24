@@ -16,50 +16,43 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.rommac.auth.databinding.ActivityAuthBinding
 import com.rommac.core_api.EventObserver
 import com.rommac.core_api.mediator.AuthMediator
+import com.rommac.main.databinding.ActivityMainBinding
 import com.rommac.mvp.BaseView
 import javax.inject.Inject
 
 class MainView @Inject constructor(
     private val activity: Activity,
-    private val authMediator: AuthMediator,
+    private val binding: ActivityMainBinding,
     rootView: View,
     lifecycleOwner: LifecycleOwner
 ) : BaseView<MainViewModel>(rootView, lifecycleOwner),
     NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView
-    private lateinit var bottomNavigation: BottomNavigationView
-    private lateinit var toolbar: Toolbar
-    private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var txtEmail: TextView
     private lateinit var layoutEmail: View
     private lateinit var progressBar: View
-    private lateinit var progressMain: View
     lateinit var txtAuth: TextView
 
 
 
     override fun initViews() {
-        navView = rootView.findViewById(R.id.nav_view)
-        progressMain = rootView.findViewById(R.id.progress_main)
-        bottomNavigation = rootView.findViewById(R.id.bottom_navigation)
-        toolbar = rootView.findViewById(R.id.toolbar)
-        drawerLayout = rootView.findViewById(R.id.drawer_layout)
 
         val toggle = ActionBarDrawerToggle(
             activity,
-            drawerLayout,
-            toolbar,
+            binding.drawerLayout,
+            binding.toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        drawerLayout.addDrawerListener(toggle)
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        navView.setNavigationItemSelectedListener(this)
+        binding.navView.setNavigationItemSelectedListener(this)
         val headerView = navView.getHeaderView(0)
         txtAuth = headerView.findViewById<TextView>(R.id.txtAuth)
         val imageExit = headerView.findViewById<ImageView>(R.id.imageExit)
@@ -81,7 +74,7 @@ class MainView @Inject constructor(
             viewModel.onSignoutClicked()
 
         }
-        bottomNavigation.setOnNavigationItemSelectedListener {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
 
                 R.id.players -> {
@@ -91,7 +84,7 @@ class MainView @Inject constructor(
                     viewModel.onBottomMenuItemClicked(MainContract.BOTTOM_NAV.SESSIONS)
                 }
             }
-            drawerLayout.closeDrawer(GravityCompat.START)
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }
@@ -112,18 +105,21 @@ class MainView @Inject constructor(
             signin(it)
         })
 
-        viewModel.inProgress.observe(lifecycleOwner, Observer {
+        viewModel.inProgress.observe(lifecycleOwner, {
             if (it) {
                 showProgressBar()
             } else {
                 hideProgressBar()
             }
         })
+
+        viewModel.toAuth.observe(lifecycleOwner,EventObserver{
+            toAuth()
+        })
     }
 
     fun toAuth() {
-
-        authMediator.openAuthScreen(activity)
+        navController.navigate(R.id.authActivity)
     }
 
     fun toProfile() {
@@ -156,11 +152,11 @@ class MainView @Inject constructor(
     }
 
     fun hideProgressBar() {
-        progressBar.visibility = View.INVISIBLE
+        progressBar.visibility = View.GONE
     }
 
     fun setVisibleProgressMain(isVisible: Boolean) {
-        progressBar.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+//        progressBar.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -173,7 +169,7 @@ class MainView @Inject constructor(
                 viewModel.onBottomMenuItemClicked(MainContract.BOTTOM_NAV.SESSIONS)
             }
         }
-        drawerLayout.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 }

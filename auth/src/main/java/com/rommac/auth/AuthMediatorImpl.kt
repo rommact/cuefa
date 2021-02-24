@@ -1,4 +1,4 @@
-package com.rommac.main
+package com.rommac.auth
 
 import android.app.Activity
 import android.content.Context

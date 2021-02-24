@@ -11,29 +11,26 @@ import com.rommac.core_api.dto.GameSession
 import com.rommac.core_api.dto.GameSessionState
 import com.rommac.core_api.mediator.GameMediator
 import com.rommac.mvp.BaseView
+import com.rommac.sessions.databinding.FragmentSessionBinding
 import com.rommac.ui_core.BottomMenuItem
 import com.rommac.ui_core.BottomSheetMenu
 
 
-class SessionsViewImpl(
-    rootView: View, lifecycleOwner: LifecycleOwner,
+class SessionsViewImpl(private val binding: FragmentSessionBinding,
+    lifecycleOwner: LifecycleOwner,
     private val gameMediator: GameMediator
-) : BaseView<SessionsViewModel>(rootView, lifecycleOwner),
+) : BaseView<SessionsViewModel>(binding.root, lifecycleOwner),
     SessionListAdapter.Listener {
 
-    private lateinit var listPlayers: RecyclerView
-    private lateinit var btnAddSession: View
     lateinit var sessionListAdapter: SessionListAdapter
 
 
     override fun initViews() {
-        listPlayers = rootView.findViewById(R.id.list_players)
-        btnAddSession = rootView.findViewById(R.id.btn_add_session)
         sessionListAdapter = SessionListAdapter(this)
-        listPlayers.adapter = sessionListAdapter
-        listPlayers.layoutManager = LinearLayoutManager(rootView.context)
+        binding.listPlayers.adapter = sessionListAdapter
+        binding.listPlayers.layoutManager = LinearLayoutManager(rootView.context)
 
-        btnAddSession.setOnClickListener {
+        binding.btnAddSession.setOnClickListener {
             viewModel.onAddSessionClicked()
         }
     }

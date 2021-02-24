@@ -1,4 +1,4 @@
-package com.rommac.main
+package com.rommac.auth
 
 import com.rommac.core_api.dto.AuthData
 import io.reactivex.Single

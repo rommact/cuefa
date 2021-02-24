@@ -1,11 +1,16 @@
 package com.rommac.sessions.di
 
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.rommac.core_api.mediator.GameMediator
-import com.rommac.sessions.SessionInteractor
-import com.rommac.sessions.SessionInteractorImpl
-import com.rommac.sessions.SessionsViewImpl
+import com.rommac.core_api.scope.ActivityScope
+import com.rommac.core_api.scope.FragmentScope
+import com.rommac.sessions.*
+import com.rommac.sessions.databinding.FragmentSessionBinding
 import com.rommac.sessions.network.SessionsApi
 import dagger.Module
 import dagger.Provides
@@ -19,12 +24,12 @@ class SessionModule {
     }
 
     @Provides
-    fun provideSessionView(
-        rootView: View, lifecycleOwner: LifecycleOwner,
+    fun provideSessionView( binding: FragmentSessionBinding,
+       lifecycleOwner: LifecycleOwner,
         gameMediator: GameMediator
     ): SessionsViewImpl {
         return SessionsViewImpl(
-            rootView,
+            binding,
             lifecycleOwner,
             gameMediator
         )
@@ -33,5 +38,27 @@ class SessionModule {
     @Provides
     fun getSessionApi(retrofit: Retrofit): SessionsApi {
         return retrofit.create(SessionsApi::class.java)
+    }
+
+
+    @Provides
+    fun provideSessionsViewModel(viewModelStoreOwner: ViewModelStoreOwner,
+                             viewModelFactory: ViewModelFactory
+    ): SessionsViewModel {
+        return ViewModelProvider(viewModelStoreOwner, viewModelFactory).get(SessionsViewModel::class.java)
+    }
+
+
+    @Provides
+    fun provideViewModelStoreOwner(fragment: Fragment
+    ): ViewModelStoreOwner {
+        return fragment
+    }
+
+    @FragmentScope
+    @Provides
+    fun provideFragmentSessionBinding(fragment: Fragment
+    ): FragmentSessionBinding {
+        return FragmentSessionBinding.inflate(fragment.layoutInflater)
     }
 }

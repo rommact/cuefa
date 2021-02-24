@@ -1,4 +1,4 @@
-package com.rommac.main
+package com.rommac.auth.network
 
 
 data class AuthResponse(

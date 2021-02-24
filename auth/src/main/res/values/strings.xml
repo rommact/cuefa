@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Auth</string>
+    <string name="auth_caption">Дли использования приложения необъодимо авторизоваться</string>
+    <string name="to_auth">Авторизоваться</string>
+</resources>

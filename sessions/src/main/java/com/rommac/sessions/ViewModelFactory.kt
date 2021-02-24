@@ -6,7 +6,7 @@ import com.rommac.core_api.AuthDataProvider
 import javax.inject.Inject
 import javax.inject.Provider
 
-class SessionPresenterFactory @Inject constructor(
+class ViewModelFactory @Inject constructor(
     private val sessionInteractor: Provider<SessionInteractor>, private val authDataProvider: AuthDataProvider
 ) : ViewModelProvider.Factory {
 

@@ -3,47 +3,57 @@ package com.rommac.main.di
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
-import com.rommac.core_api.mediator.AuthMediator
-import com.rommac.main.*
-import com.rommac.main.network.MainApi
-import dagger.Binds
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
+import com.rommac.main.ViewModelFactory
+import com.rommac.core_api.scope.ActivityScope
+import com.rommac.main.MainView
+import com.rommac.main.MainViewModel
+import com.rommac.main.databinding.ActivityMainBinding
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
 
 @Module
 abstract class MainModule {
     @Module
     object MainModuleProviders {
 
-        @JvmStatic
-        @Provides
-        fun getMainApi(retrofit: Retrofit): MainApi {
-            return retrofit.create(MainApi::class.java)
-        }
-
-        @JvmStatic
-        @Provides
-        fun getAuthInteractor(mainApi: MainApi): AuthInteractor {
-            return AuthInteractorImpl(mainApi)
-        }
-
         @Provides
         fun provideMainView(
-            activity: AppCompatActivity, authMediator: AuthMediator,
+            activity: AppCompatActivity,activityMainBinding: ActivityMainBinding,
             rootView: View, lifecycleOwner: LifecycleOwner
         ): MainView {
             return MainView(
-                activity, authMediator,
+                activity,
+                activityMainBinding,
                 rootView,
                 lifecycleOwner
             )
         }
 
+        @JvmStatic
+        @Provides
+        fun provideAuthViewModel(viewModelStoreOwner: ViewModelStoreOwner,
+                                 viewModelFactory: ViewModelFactory
+        ): MainViewModel {
+            return ViewModelProvider(viewModelStoreOwner, viewModelFactory).get(MainViewModel::class.java)
+        }
+        @JvmStatic
+        @Provides
+        fun provideViewModelStoreOwner(activity: AppCompatActivity
+        ): ViewModelStoreOwner {
+            return activity
+        }
+        @ActivityScope
+        @JvmStatic
+        @Provides
+        fun provideActivityMainBinding(activity: AppCompatActivity
+        ): ActivityMainBinding {
+            return ActivityMainBinding.inflate(activity.layoutInflater)
+        }
+
     }
 
-    @Binds
-    abstract fun bindAuthMediator(authMediatorImpl: AuthMediatorImpl): AuthMediator
 
 
 }

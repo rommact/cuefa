@@ -1,4 +1,4 @@
-package com.rommac.main.network
+package com.rommac.auth.network
 
 import com.google.gson.annotations.SerializedName
 

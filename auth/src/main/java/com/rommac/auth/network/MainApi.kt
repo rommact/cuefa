@@ -1,6 +1,5 @@
-package com.rommac.main.network
+package com.rommac.auth.network
 
-import com.rommac.main.AuthResponse
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST

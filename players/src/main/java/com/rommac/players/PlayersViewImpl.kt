@@ -10,24 +10,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.Player
 import com.rommac.mvp.BaseView
+import com.rommac.players.databinding.PlayersFragmentBinding
 
-class PlayersViewImpl(rootView: View, lifecycleOwner:LifecycleOwner) :
-    BaseView<PlayersViewModel>(rootView, lifecycleOwner),
+class PlayersViewImpl(private val binding: PlayersFragmentBinding,
+   lifecycleOwner:LifecycleOwner) :
+    BaseView<PlayersViewModel>(binding.root, lifecycleOwner),
     PlayerListAdapter.Listener {
 
-    private lateinit var editQuery: EditText
-    private lateinit var listPlayers: RecyclerView
     lateinit var playerListAdapter: PlayerListAdapter
 
 
     override fun initViews() {
-        listPlayers = rootView.findViewById(R.id.list_players)
-        editQuery = rootView.findViewById(R.id.edit_query)
-
         playerListAdapter = PlayerListAdapter(this)
-        listPlayers.adapter = playerListAdapter
-        listPlayers.layoutManager = LinearLayoutManager(rootView.context)
-        editQuery.addTextChangedListener(afterTextChanged = {
+        binding.listPlayers.adapter = playerListAdapter
+        binding.listPlayers.layoutManager = LinearLayoutManager(rootView.context)
+        binding.editQuery.addTextChangedListener(afterTextChanged = {
             viewModel.onQueryTextChanged(it.toString())
         })
     }

@@ -11,6 +11,18 @@
     <fragment
         android:id="@+id/sessionFragment"
         android:name="com.rommac.sessions.SessionFragment"
-        android:label="SessionFragment" />
+        android:label="SessionFragment" >
+        <action
+            android:id="@+id/action_sessionFragment_to_gameActivity"
+            app:destination="@id/gameActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/authActivity"
+        android:name="com.rommac.auth.AuthActivity"
+        android:label="AuthActivity" />
+    <activity
+        android:id="@+id/gameActivity"
+        android:name="com.rommac.game.GameActivity"
+        android:label="GameActivity" />
 
 </navigation>

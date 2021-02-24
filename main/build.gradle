@@ -6,6 +6,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
 
@@ -42,18 +45,15 @@ dependencies {
     implementation project(':players')
     api project(':game')
     implementation project(':sessions')
+    api project(':auth')
     implementation project(':ui_core')
-    api project(':network')
     implementation dagger
     kapt daggerCompiler
     implementation rxjava2
     implementation material
     implementation constraintlayout
-    implementation retrofit
-    implementation retrofitGson
 
-    implementation 'com.firebaseui:firebase-ui-auth:4.3.2'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
