@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AuthInteractorImpl
-@Inject constructor(private val api: MainApi): AuthInteractor {
+@Inject constructor(private val authGateway: AuthGateway): AuthInteractor {
     companion object: AuthDataProvider {
         private var currentAuthData: AuthData =
             AuthData(false, 0, "", "")
@@ -39,8 +39,7 @@ class AuthInteractorImpl
             uid,
             adid
         )
-        return api.auth(authData)
-            .map { AuthData(it.status, it.balance, email, uid) }
+        return authGateway.auth(authData)
             .doOnSuccess {
                 currentAuthData = it
             }

@@ -1,6 +1,5 @@
 package com.rommac.auth.di
 
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +13,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
 abstract class AuthModule {
@@ -29,15 +27,15 @@ abstract class AuthModule {
 
         @JvmStatic
         @Provides
-        fun getAuthInteractor(mainApi: MainApi): AuthInteractor {
-            return AuthInteractorImpl(mainApi)
+        fun getAuthInteractor(authGateway: AuthGateway): AuthInteractor {
+            return AuthInteractorImpl(authGateway)
         }
 
         @JvmStatic
         @Provides
         fun provideAuthView(
-            activity: AppCompatActivity, binding:ActivityAuthBinding, authMediator: AuthMediator,
-           lifecycleOwner: LifecycleOwner
+            activity: AppCompatActivity, binding: ActivityAuthBinding, authMediator: AuthMediator,
+            lifecycleOwner: LifecycleOwner
         ): AuthView {
             return AuthView(
                 activity,
@@ -50,21 +48,29 @@ abstract class AuthModule {
 
         @JvmStatic
         @Provides
-        fun provideAuthViewModel(viewModelStoreOwner: ViewModelStoreOwner,
-            viewModelFactory:ViewModelFactory
+        fun provideAuthViewModel(
+            viewModelStoreOwner: ViewModelStoreOwner,
+            viewModelFactory: ViewModelFactory
         ): AuthViewModel {
-            return ViewModelProvider(viewModelStoreOwner, viewModelFactory).get(AuthViewModel::class.java)
+            return ViewModelProvider(
+                viewModelStoreOwner,
+                viewModelFactory
+            ).get(AuthViewModel::class.java)
         }
+
         @JvmStatic
         @Provides
-        fun provideViewModelStoreOwner(activity: AppCompatActivity
+        fun provideViewModelStoreOwner(
+            activity: AppCompatActivity
         ): ViewModelStoreOwner {
             return activity
         }
+
         @ActivityScope
         @JvmStatic
         @Provides
-        fun provideActivityAuthBinding(activity: AppCompatActivity
+        fun provideActivityAuthBinding(
+            activity: AppCompatActivity
         ): ActivityAuthBinding {
             return ActivityAuthBinding.inflate(activity.layoutInflater)
         }
@@ -72,6 +78,9 @@ abstract class AuthModule {
 
     @Binds
     abstract fun bindAuthMediator(authMediatorImpl: AuthMediatorImpl): AuthMediator
+
+    @Binds
+    abstract fun bindAuthGateway(authGateway: AuthGatewayImpl): AuthGateway
 
 
 }
