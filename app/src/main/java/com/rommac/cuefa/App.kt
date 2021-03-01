@@ -34,5 +34,6 @@ class App : Application(), AppWithFacade, AppWithNetwork {
     override fun onCreate() {
         super.onCreate()
         (getFacade() as FacadeComponent).inject(this)
+
     }
 }

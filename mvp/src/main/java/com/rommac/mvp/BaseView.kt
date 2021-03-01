@@ -10,7 +10,7 @@ abstract class BaseView<T: BaseViewModel>(
     protected val lifecycleOwner: LifecycleOwner
 ) : MvpView {
     lateinit var viewModel: T
-    public fun onFinishInflate(viewModel: T, lifecycle: Lifecycle){
+    fun onFinishInflate(viewModel: T, lifecycle: Lifecycle){
         this.viewModel = viewModel
         lifecycle.addObserver(viewModel)
         initViews()

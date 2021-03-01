@@ -40,7 +40,7 @@ class SessionsViewImpl(private val binding: FragmentSessionBinding,
     }
 
     override fun bindViewModel() {
-        viewModel.sessions.observe(lifecycleOwner, Observer {
+        viewModel.sessions.observe(lifecycleOwner, {
             setSessions(it)
         })
 

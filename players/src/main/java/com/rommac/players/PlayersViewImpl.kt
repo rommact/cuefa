@@ -30,7 +30,7 @@ class PlayersViewImpl(private val binding: PlayersFragmentBinding,
     }
 
     override fun bindViewModel() {
-        viewModel.players.observe(lifecycleOwner, Observer {
+        viewModel.players.observe(lifecycleOwner,  {
             setPlayers(it)
         })
     }

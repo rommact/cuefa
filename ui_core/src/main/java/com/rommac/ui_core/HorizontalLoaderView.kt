@@ -52,6 +52,12 @@ class HorizontalLoaderView(context: Context, attrs: AttributeSet?) :
             color = Color.BLACK
             strokeWidth = 30f
         }
+
+        images = listOf(
+            Image(centerX - firstImage.width, firstImage),
+            Image(centerX, secondImage),
+            Image(centerX + thirdImage.width, thirdImage)
+        )
     }
 
 
@@ -125,16 +131,20 @@ class HorizontalLoaderView(context: Context, attrs: AttributeSet?) :
 
         marginY = (centerY.toFloat() - firstImage.height)
 
-        images = listOf(
-            Image(centerX - firstImage.width, firstImage),
-            Image(centerX, secondImage),
-            Image(centerX + thirdImage.width, thirdImage)
-        )
+        images[0].bitmap = firstImage
+        images[0].startX = centerX - firstImage.width
+
+        images[1].bitmap = secondImage
+        images[1].startX = centerX
+
+        images[2].bitmap = thirdImage
+        images[2].startX = centerX + thirdImage.width
+
     }
 
     class Image(
-        val startX: Int = 0,
-        val bitmap: Bitmap
+        var startX: Int = 0,
+        var bitmap: Bitmap
     ) {
         var currentX: Int = startX
         fun inStart(): Boolean {

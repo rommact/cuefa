@@ -9,38 +9,15 @@ import androidx.core.graphics.drawable.toBitmap
 
 class LoaderView(context: Context, attrs: AttributeSet?) :
     View(context, attrs) {
-    private var firstImage: Bitmap? = null
-    private var secondImage: Bitmap? = null
-    private var thirdImage: Bitmap? = null
+    private var firstImage: Bitmap
+    private var secondImage: Bitmap
+    private var thirdImage: Bitmap
     private val firstMatrix: Matrix
     private val secondMatrix: Matrix
     private val thirdMatrix: Matrix
     private var centerX: Int = 0
     private var centerY: Int = 0
     private val paint: Paint
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        centerX = width / 2
-        centerY = height / 2
-        firstMatrix.setRotate(120f, centerX.toFloat(), centerY.toFloat())
-        secondMatrix.setRotate(240f, centerX.toFloat(), centerY.toFloat())
-        thirdMatrix.setRotate(10f)
-        canvas.drawBitmap(firstImage, firstMatrix, paint)
-        canvas.drawBitmap(secondImage, secondMatrix, paint)
-        canvas.drawBitmap(thirdImage, thirdMatrix, paint)
-    }
-
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
-
-        centerX = width / 2
-        centerY = height / 2
-
-
-        firstMatrix.setTranslate(centerX/2f, centerY/2f)
-        secondMatrix.setTranslate(centerX/2f, centerY/2f)
-        thirdMatrix.setTranslate(centerX/2f, centerY/2f)
-    }
 
     init {
         val a = context.theme.obtainStyledAttributes(
@@ -67,4 +44,32 @@ class LoaderView(context: Context, attrs: AttributeSet?) :
 
         paint = Paint()
     }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+
+        centerX = width / 2
+        centerY = height / 2
+
+
+        firstMatrix.setTranslate(centerX/2f, centerY/2f)
+        secondMatrix.setTranslate(centerX/2f, centerY/2f)
+        thirdMatrix.setTranslate(centerX/2f, centerY/2f)
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        centerX = width / 2
+        centerY = height / 2
+        firstMatrix.setRotate(120f, centerX.toFloat(), centerY.toFloat())
+        secondMatrix.setRotate(240f, centerX.toFloat(), centerY.toFloat())
+        thirdMatrix.setRotate(10f)
+        canvas.drawBitmap(firstImage, firstMatrix, paint)
+        canvas.drawBitmap(secondImage, secondMatrix, paint)
+        canvas.drawBitmap(thirdImage, thirdMatrix, paint)
+    }
+
+
+
+
 }
