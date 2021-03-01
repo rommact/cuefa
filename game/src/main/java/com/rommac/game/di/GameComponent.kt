@@ -1,5 +1,6 @@
 package com.rommac.game.di
 
+import android.app.Activity
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
@@ -20,7 +21,7 @@ interface GameComponent {
         fun create(activity:AppCompatActivity,providersFacade: ProvidersFacade, networkProvider: NetworkProvider): GameComponent {
             return DaggerGameComponent.builder()
                 .lifecycleOwner(activity)
-                .rooView(activity.findViewById(android.R.id.content) as View)
+                .activity(activity)
                 .providersFacade(providersFacade)
                 .networkProvider(networkProvider)
                 .build()
@@ -34,7 +35,7 @@ interface GameComponent {
         @BindsInstance
         fun lifecycleOwner(lifecycle: LifecycleOwner): Builder
         @BindsInstance
-        fun rooView(rootView: View): Builder
+        fun activity(activity: AppCompatActivity): Builder
 
         fun providersFacade(providersFacade: ProvidersFacade): Builder
 

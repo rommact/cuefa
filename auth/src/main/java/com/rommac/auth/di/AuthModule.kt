@@ -74,6 +74,8 @@ abstract class AuthModule {
         ): ActivityAuthBinding {
             return ActivityAuthBinding.inflate(activity.layoutInflater)
         }
+
+
     }
 
     @Binds

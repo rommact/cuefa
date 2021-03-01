@@ -7,7 +7,7 @@ import com.rommac.core_api.dto.*
 import com.rommac.mvp.BaseViewModel
 import javax.inject.Inject
 
-class GameViewModelImpl @Inject constructor(
+class GameViewModelImpl(
     private val gameInteractor: GameInteractor,
     private val authData: AuthData
 ) : BaseViewModel() {

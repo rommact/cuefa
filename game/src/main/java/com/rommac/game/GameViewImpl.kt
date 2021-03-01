@@ -10,10 +10,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.dto.ACTION_TYPE
+import com.rommac.game.databinding.ActivityGameBinding
 import com.rommac.mvp.BaseView
 
-class GameViewImpl(rootView: View, lifecycleOwner: LifecycleOwner) :
-    BaseView<GameViewModelImpl>(rootView, lifecycleOwner),
+class GameViewImpl(binding: ActivityGameBinding, lifecycleOwner: LifecycleOwner) :
+    BaseView<GameViewModelImpl>(binding.root, lifecycleOwner),
     ActionsAdapter.OnItemClickListener {
 
     private lateinit var adapter: ActionsAdapter
