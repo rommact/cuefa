@@ -34,7 +34,6 @@ class SessionModule {
         return SessionsViewImpl(
             binding,
             lifecycleOwner,
-            navController,
             gameMediator
         )
     }

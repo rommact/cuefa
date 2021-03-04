@@ -18,7 +18,7 @@ import com.rommac.ui_core.BottomSheetMenu
 
 
 class SessionsViewImpl(private val binding: FragmentSessionBinding,
-    lifecycleOwner: LifecycleOwner,val navController: NavController,
+    lifecycleOwner: LifecycleOwner,
     private val gameMediator: GameMediator
 ) : BaseView<SessionsViewModel>(binding.root, lifecycleOwner),
     SessionListAdapter.Listener {
@@ -102,6 +102,6 @@ class SessionsViewImpl(private val binding: FragmentSessionBinding,
         state: GameSessionState
     ) {
         //todo refact
-        gameMediator.toGame(navController,gameSession, state)
+        gameMediator.toGame(gameSession, state)
     }
 }

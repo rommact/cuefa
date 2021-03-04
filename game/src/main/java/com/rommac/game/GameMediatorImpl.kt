@@ -10,8 +10,8 @@ import com.rommac.core_api.mediator.GameMediator
 import javax.inject.Inject
 
 public class GameMediatorImpl
-@Inject constructor() : GameMediator {
-     override fun toGame( navController: NavController,gameSession: GameSession, state: GameSessionState) {
+@Inject constructor(val navController: NavController) : GameMediator {
+     override fun toGame(gameSession: GameSession, state: GameSessionState) {
          var bundle = Bundle()
         GameActivity.putParams(bundle, gameSession,state)
          navController.navigate(R.id.action_sessionFragment_to_gameActivity,bundle)

@@ -7,7 +7,6 @@ import com.rommac.core_api.dto.GameSessionState
 interface GameMediator {
     fun toGame(
         //todo refact
-        navController: androidx.navigation.NavController,
         gameSession: GameSession,
         state: GameSessionState
     )

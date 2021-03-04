@@ -6,6 +6,9 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.rommac.core_api.mediator.AppWithFacade
+import com.rommac.core_api.mediator.GameMediator
+import com.rommac.core_api.mediator.MediatorsOwner
+import com.rommac.core_api.mediator.MediatorsProvider
 import com.rommac.main.databinding.ActivityMainBinding
 import com.rommac.main.di.MainComponent
 import com.rommac.mvp.CommonView
@@ -14,7 +17,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), CommonView {
+class MainActivity : AppCompatActivity(), CommonView, MediatorsOwner {
+
+    private lateinit var component: MainComponent
 
     @Inject
     lateinit var viewModel: MainViewModel
@@ -37,11 +42,12 @@ class MainActivity : AppCompatActivity(), CommonView {
     }
 
     private fun inject() {
-        MainComponent.create(
+        component = MainComponent.create(
             (application as AppWithFacade).getFacade(),
             (application as AppWithNetwork).getNetworkFacade(),
             this
-        ).inject(this)
+        )
+        component.inject(this)
     }
 
 
@@ -61,6 +67,10 @@ class MainActivity : AppCompatActivity(), CommonView {
 
     override fun getNavController(): NavController {
         return _navController;
+    }
+
+    override fun getMediatorsProvider(): MediatorsProvider{
+        return component
     }
 
 }
