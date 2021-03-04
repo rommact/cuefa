@@ -38,6 +38,7 @@ dependencies {
      implementation stdlib
     implementation appCompat
     implementation coreCtx
+    implementation navigation
     implementation project(':core_api')
     implementation project(':mvp')
     implementation project(':ui_core')

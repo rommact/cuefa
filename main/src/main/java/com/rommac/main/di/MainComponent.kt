@@ -3,6 +3,7 @@ package com.rommac.main.di
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.NavController
 import com.rommac.core_api.ProvidersFacade
 import com.rommac.core_api.scope.ActivityScope
 import com.rommac.main.MainActivity
@@ -21,7 +22,6 @@ interface MainComponent {
             return DaggerMainComponent.builder()
                 .activity(activity)
                 .lifecycleOwner(activity)
-                .rooView(activity.findViewById(android.R.id.content) as View)
                 .providersFacade(providersFacade)
                 .networkFacade(networkFacade)
                 .build()
@@ -34,8 +34,6 @@ interface MainComponent {
     interface Builder {
         @BindsInstance
         fun lifecycleOwner(lifecycle: LifecycleOwner): Builder
-        @BindsInstance
-        fun rooView(rootView: View): Builder
         @BindsInstance
         fun activity(activity: AppCompatActivity): Builder
         fun providersFacade(providersFacade: ProvidersFacade): Builder

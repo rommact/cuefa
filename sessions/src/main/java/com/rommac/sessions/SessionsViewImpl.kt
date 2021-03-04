@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rommac.core_api.EventObserver
@@ -17,7 +18,7 @@ import com.rommac.ui_core.BottomSheetMenu
 
 
 class SessionsViewImpl(private val binding: FragmentSessionBinding,
-    lifecycleOwner: LifecycleOwner,
+    lifecycleOwner: LifecycleOwner,val navController: NavController,
     private val gameMediator: GameMediator
 ) : BaseView<SessionsViewModel>(binding.root, lifecycleOwner),
     SessionListAdapter.Listener {
@@ -40,7 +41,7 @@ class SessionsViewImpl(private val binding: FragmentSessionBinding,
     }
 
     override fun bindViewModel() {
-        viewModel.sessions.observe(lifecycleOwner, {
+        viewModel.sessions.observe(lifecycleOwner, Observer{
             setSessions(it)
         })
 
@@ -100,6 +101,7 @@ class SessionsViewImpl(private val binding: FragmentSessionBinding,
         gameSession: GameSession,
         state: GameSessionState
     ) {
-        gameMediator.toGame(rootView.context, gameSession, state)
+        //todo refact
+        gameMediator.toGame(navController,gameSession, state)
     }
 }

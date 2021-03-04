@@ -35,6 +35,7 @@ dependencies {
     implementation appCompat
     implementation coreCtx
 
+    implementation navigation
     implementation room
     implementation roomRx
     implementation dagger

@@ -21,12 +21,12 @@ class GameActivity : AppCompatActivity() {
         private const val ARG_SESSION = "ARG_SESSION"
         private const val ARG_SESSION_STATE = "ARG_SESSION_STATE"
         fun putParams(
-            intent: Intent,
+            bundle: Bundle,
             gameSession: GameSession,
             state: GameSessionState
         ){
-             intent.putExtra(ARG_SESSION, gameSession)
-             intent.putExtra(ARG_SESSION_STATE, state)
+            bundle.putParcelable(ARG_SESSION, gameSession)
+            bundle.putSerializable(ARG_SESSION_STATE, state)
         }
     }
     @Inject

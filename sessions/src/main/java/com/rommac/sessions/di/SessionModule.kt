@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.rommac.core_api.mediator.GameMediator
 import com.rommac.core_api.scope.ActivityScope
 import com.rommac.core_api.scope.FragmentScope
+import com.rommac.mvp.CommonView
 import com.rommac.sessions.*
 import com.rommac.sessions.databinding.FragmentSessionBinding
 import com.rommac.sessions.network.SessionsApi
@@ -25,12 +28,13 @@ class SessionModule {
 
     @Provides
     fun provideSessionView( binding: FragmentSessionBinding,
-       lifecycleOwner: LifecycleOwner,
+       lifecycleOwner: LifecycleOwner, navController: NavController,
         gameMediator: GameMediator
     ): SessionsViewImpl {
         return SessionsViewImpl(
             binding,
             lifecycleOwner,
+            navController,
             gameMediator
         )
     }
@@ -61,4 +65,10 @@ class SessionModule {
     ): FragmentSessionBinding {
         return FragmentSessionBinding.inflate(fragment.layoutInflater)
     }
+
+    @Provides
+    fun provideNavController(commonView: CommonView):NavController{
+        return commonView.getNavController()
+    }
+
 }

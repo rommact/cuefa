@@ -39,7 +39,7 @@ dependencies {
      implementation stdlib
     implementation appCompat
     implementation coreCtx
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+    api navigation
     api project(':core')
     implementation project(':mvp')
     implementation project(':players')

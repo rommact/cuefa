@@ -26,9 +26,8 @@ import javax.inject.Inject
 class MainView @Inject constructor(
     private val activity: Activity,
     private val binding: ActivityMainBinding,
-    rootView: View,
     lifecycleOwner: LifecycleOwner
-) : BaseView<MainViewModel>(rootView, lifecycleOwner),
+) : BaseView<MainViewModel>(binding.root, lifecycleOwner),
     NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var navView: NavigationView

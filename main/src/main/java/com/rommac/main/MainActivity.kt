@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), CommonView {
 
     @Inject
     lateinit var binding: ActivityMainBinding
-    private lateinit var navController: NavController
+    private lateinit var _navController: NavController
 
     @Inject
     lateinit var mainView: MainView
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), CommonView {
         inject()
         setContentView(binding.root)
         setSupportActionBar(toolbar)
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        _navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         mainView.onFinishInflate(viewModel, lifecycle)
     }
 
@@ -57,6 +57,10 @@ class MainActivity : AppCompatActivity(), CommonView {
 
     override fun setVisibleProgressMain(isVisible: Boolean) {
         mainView.setVisibleProgressMain(isVisible)
+    }
+
+    override fun getNavController(): NavController {
+        return _navController;
     }
 
 }

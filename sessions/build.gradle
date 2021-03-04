@@ -39,6 +39,8 @@ dependencies {
     implementation appCompat
     implementation coreCtx
 
+    implementation navigation
+
     implementation project(':core_api')
     implementation project(':ui_core')
     implementation project(':mvp')
